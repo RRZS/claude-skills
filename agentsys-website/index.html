@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AgentSys — Runtime & orchestration for AI agents</title>
+<meta name="description" content="A modular runtime and orchestration system for AI agents. 20 plugins, 49 agents, 41 skills — structured pipelines for Claude Code, OpenCode, Codex CLI, Cursor, and Kiro." />
+<meta property="og:title" content="AgentSys — Runtime & orchestration for AI agents" />
+<meta property="og:description" content="Structured pipelines, gated phases, specialized agents. Code does code work. AI does AI work." />
+<meta property="og:type" content="website" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">
+      <span class="logo-dot"></span>
+      AgentSys
+    </a>
+    <nav class="nav-links">
+      <a href="#problem">Why</a>
+      <a href="#approach">Approach</a>
+      <a href="#commands">Commands</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#installation">Install</a>
+      <a class="ghost" href="https://github.com/agent-sh/agentsys" target="_blank" rel="noopener">GitHub →</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="badge">v5.12.0 · MIT · works on 5 platforms</div>
+      <h1>
+        A modular runtime for orchestrating
+        <span class="grad">AI agents.</span>
+      </h1>
+      <p class="lede">
+        AI models can write code. That's not the hard part anymore. The hard part is
+        everything around it — task selection, branch management, code review, CI,
+        PR comments, deployment. AgentSys is the runtime that handles all of it.
+      </p>
+      <div class="cta-row">
+        <a class="btn primary" href="#installation">Get started</a>
+        <a class="btn secondary" href="https://github.com/agent-sh/agentsys" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><b>20</b><span>Plugins</span></div>
+        <div class="stat"><b>49</b><span>Agents</span></div>
+        <div class="stat"><b>41</b><span>Skills</span></div>
+        <div class="stat"><b>30k</b><span>Lines of lib</span></div>
+        <div class="stat"><b>3,507</b><span>Tests</span></div>
+        <div class="stat"><b>5</b><span>Platforms</span></div>
+      </div>
+
+      <div class="platforms">
+        Built for
+        <span>Claude Code</span> ·
+        <span>Codex CLI</span> ·
+        <span>OpenCode</span> ·
+        <span>Cursor</span> ·
+        <span>Kiro</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section id="problem" class="section alt">
+    <div class="wrap two-col">
+      <div>
+        <h2>The bottleneck isn't code generation.</h2>
+        <p class="muted">
+          Frontier models write good code. That's solved. What's not solved is
+          context management, compaction amnesia, task drift, skipped steps,
+          token waste, and babysitting.
+        </p>
+      </div>
+      <ul class="bullets">
+        <li><b>Context management</b> — models forget what they're doing mid-session.</li>
+        <li><b>Compaction amnesia</b> — long sessions get summarized, losing critical state.</li>
+        <li><b>Task drift</b> — without structure, agents wander from the goal.</li>
+        <li><b>Skipped steps</b> — agents skip review, tests, or cleanup when not enforced.</li>
+        <li><b>Token waste</b> — using LLM calls for work static analysis does faster.</li>
+        <li><b>Babysitting</b> — manually orchestrating every phase, every session.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section id="approach" class="section">
+    <div class="wrap">
+      <h2 class="center">Code does code work. <span class="grad">AI does AI work.</span></h2>
+      <p class="lede center">
+        Detection uses regex, AST, and static analysis — fast, deterministic, no tokens wasted.
+        Judgment uses LLM calls for synthesis, planning, and review — where reasoning matters.
+        <b>77% fewer tokens</b> for /drift-detect vs multi-agent approaches.
+      </p>
+
+      <div class="cards three">
+        <div class="card">
+          <div class="tag tag-high">HIGH</div>
+          <h3>Definitely a problem</h3>
+          <p>Safe to auto-fix.</p>
+        </div>
+        <div class="card">
+          <div class="tag tag-med">MEDIUM</div>
+          <h3>Probably a problem</h3>
+          <p>Needs context.</p>
+        </div>
+        <div class="card">
+          <div class="tag tag-low">LOW</div>
+          <h3>Might be a problem</h3>
+          <p>Needs human judgment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENCHMARK -->
+  <section class="section alt">
+    <div class="wrap">
+      <h2>Sonnet + AgentSys beats raw Opus.</h2>
+      <p class="muted">Same task, same repo, same prompt. Benchmarked March 2026 on real workloads.</p>
+      <div class="table-wrap">
+      <table class="bench">
+        <thead>
+          <tr><th>Configuration</th><th>Cost</th><th>Output tokens</th><th>Result quality</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Opus, no agentsys</td><td>$1.10</td><td>2,841</td><td>Generic recommendations</td></tr>
+          <tr><td>Opus + agentsys</td><td>$1.95</td><td>5,879</td><td>Specific, project-aware</td></tr>
+          <tr class="hl"><td><b>Sonnet + agentsys</b></td><td><b>$0.66</b></td><td><b>6,084</b></td><td><b>Matches Opus + agentsys at 40% lower cost</b></td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMANDS -->
+  <section id="commands" class="section">
+    <div class="wrap">
+      <h2>A command for every phase.</h2>
+      <p class="muted">20 plugins. Each is a single, structured pipeline you run with one slash command.</p>
+
+      <div class="cards grid">
+        <article class="card cmd">
+          <code class="cmd-name">/next-task</code>
+          <h3>Task to production, automated</h3>
+          <p>12-phase workflow: discovers tasks, explores, plans, codes, reviews, ships. One plan approval unlocks autonomous execution through merged PR.</p>
+        </article>
+        <article class="card cmd">
+          <code class="cmd-name">/ship</code>
+          <h3>Branch → merged PR</h3>
+          <p>Commits, pushes, opens the PR, monitors CI, answers reviewer comments, merges, deploys, and cleans up. Auto-detects GitHub Actions, Railway, Vercel.</p>
+        </article>
+        <article class="card cmd">
+          <code class="cmd-name">/prepare-delivery</code>
+          <h3>Pre-ship quality gates</h3>
+          <p>Deslop, simplify, review loop, delivery validation, and docs sync — in order, gated.</p>
+        </article>
+        <article class="card cmd">
+          <code class="cmd-name">/deslop</code>
+          <h3>Kill AI slop before it ships</h3>
+          <p>3-phase detection finds debug statements, placeholders, verbose comments, TODOs, and over-engineering across JS/TS, Python, Rust, Go, Java.</p>
+        </article>
+        <article class="card cmd">
+          <code class="cmd-name">/drift-detect</code>
+          <h3>Documented but not built</h3>
+          <p>AST-based plan-vs-code analysis. JS collectors gather data; one Opus call does semantic matching. Tested on 1,000+ repos.</p>
+        </article>
+        <article class="card cmd">
+          <code class="cmd-name">/perf</code>
+          <h3>Evidence-backed perf work</h3>
+          <p>10-phase methodology: baselines, breaking points, hypothesis generation, profiling, controlled experiments.</p>
+        </article>
+        <article class="card cmd">
+          <code class="cmd-name">/audit-project</code>
+          <h3>Multi-agent code review</h3>
+          <p>Up to 10 specialist agents (security, performance, architecture, DB, API, frontend, backend, DevOps) — iterates until zero open issues.</p>
+        </article>
+        <article class="card cmd">
+          <code class="cmd-name">/agnix</code>
+          <h3>Lint agent configs</h3>
+          <p>399 validation rules (126 auto-fixable) for Skills, Memory, Hooks, MCP, and Plugins across 10+ AI tools. SARIF output for GitHub Code Scanning.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKFLOW -->
+  <section id="workflow" class="section alt">
+    <div class="wrap">
+      <h2>Inside <code>/next-task</code></h2>
+      <p class="muted">One approval. Then autonomous execution through to merged PR.</p>
+      <ol class="steps">
+        <li><span>1</span><div><b>Policy selection</b><p>Task source, priority filter, stopping point.</p></div></li>
+        <li><span>2</span><div><b>Task discovery</b><p>Top 5 prioritized tasks — you pick one.</p></div></li>
+        <li><span>3</span><div><b>Worktree setup</b><p>Isolated branch and working directory.</p></div></li>
+        <li><span>4</span><div><b>Exploration</b><p>Deep codebase analysis to understand context.</p></div></li>
+        <li><span>5</span><div><b>Planning</b><p>Step-by-step implementation design — gated for approval.</p></div></li>
+        <li><span>6</span><div><b>Implementation</b><p>Specialized agents write code against the plan.</p></div></li>
+        <li><span>7</span><div><b>Review loop</b><p>Audit agents iterate until clean.</p></div></li>
+        <li><span>8</span><div><b>Ship</b><p>PR, CI, reviewer comments, merge, deploy, cleanup.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- INSTALL -->
+  <section id="installation" class="section">
+    <div class="wrap">
+      <h2>Install in 30 seconds.</h2>
+
+      <div class="install-grid">
+        <div class="install-card">
+          <div class="install-head">
+            <h3>Claude Code</h3>
+            <span class="pill">Recommended</span>
+          </div>
+          <p class="muted">Add the marketplace, install the plugins you need.</p>
+<pre><code>/plugin marketplace add agent-sh/agentsys
+/plugin install next-task@agentsys
+/plugin install ship@agentsys</code></pre>
+        </div>
+
+        <div class="install-card">
+          <div class="install-head">
+            <h3>All platforms (npm)</h3>
+            <span class="pill subtle">Universal</span>
+          </div>
+          <p class="muted">Interactive installer — pick your platforms.</p>
+<pre><code>npm install -g agentsys
+agentsys</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section class="section alt">
+    <div class="wrap">
+      <h2>Design principles.</h2>
+      <div class="cards three">
+        <div class="card">
+          <h3>One agent, one job</h3>
+          <p>Same principle as good code: single responsibility. Narrow scope, clear success criteria.</p>
+        </div>
+        <div class="card">
+          <h3>Pipeline with gates</h3>
+          <p>Same principle as DevOps. Each step passes before the next begins. Hooks enforce it — agents cannot skip phases.</p>
+        </div>
+        <div class="card">
+          <h3>Tools do tool work</h3>
+          <p>Regex, AST, and static analysis are deterministic and free. Use them. Save tokens for judgment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div>
+        <div class="brand"><span class="logo-dot"></span> AgentSys</div>
+        <p class="muted small">A runtime &amp; orchestration system for AI agents.</p>
+      </div>
+      <div class="links">
+        <a href="https://github.com/agent-sh/agentsys" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.npmjs.com/package/agentsys" target="_blank" rel="noopener">npm</a>
+        <a href="https://github.com/agent-sh/agentsys/discussions" target="_blank" rel="noopener">Discussions</a>
+        <a href="https://github.com/agent-sh" target="_blank" rel="noopener">agent-sh org</a>
+      </div>
+      <p class="muted small">MIT · Built by <a href="https://github.com/avifenesh" target="_blank" rel="noopener">Avi Fenesh</a>. Unofficial showcase site.</p>
+    </div>
+  </footer>
+
+</main>
+</body>
+</html>
