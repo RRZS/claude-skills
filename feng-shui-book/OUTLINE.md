@@ -15,7 +15,7 @@
 | **Format** | Comprehensive guide — authoritative all-in-one reference |
 | **Length** | 300+ pages · ~95,000–110,000 words · 9 parts · 47 chapters + 6 appendices |
 | **Audience** | Spiritual seekers, energy-work practitioners, and committed students who want the classical tradition honored — from curious beginner to aspiring practitioner |
-| **Tone** | Traditional and spiritual: reverent, lyrical, lineage-respecting; treats Feng Shui as a living wisdom path, not décor or superstition |
+| **Tone** | Traditional and spiritual: reverent, lyrical, and evocative — story-rich and immersive; treats Feng Shui as a living wisdom path, not décor or superstition |
 
 ### The book's promise
 
@@ -53,12 +53,20 @@ The book is sequenced as an initiation, moving from understanding → seeing →
 
 ## 4. Voice & Tone Guidelines
 
-- **Reverent but clear.** Lyrical chapter openings; precise, practical instruction in the body.
-- **Lineage-respecting.** Chinese terms given in pinyin with characters and meaning on first use; the tradition's masters and texts named with respect.
-- **Spiritually framed.** The home is addressed as a living being; the reader as a "practitioner" walking a path of cultivation.
+The prose should feel *enchanted but exact* — a worldview in which the unseen is treated as real and palpable, rendered in language vivid enough for the reader to feel it, yet precise enough to act on.
+
+- **Reverent but clear.** Lyrical, atmospheric chapter and section openings give way to precise, practical instruction in the body. Move the reader first, then teach them.
+- **Evocative and sensory.** Energy is described in concrete, physical images — Qi as a breath, a current, a tide; the home as something that inhales and exhales. Every abstraction is grounded in something the reader can see, feel, or hear.
+- **Mythic register.** Where it serves the material, the prose carries the cadence of an old tradition handed down — declarative, unhurried, a little incantatory — without ever becoming purple or vague.
+- **Storytelling as instruction.** Abstract principles are illustrated with short narrative vignettes — a grounded scene of a home, a room, or a practitioner at work — so the reader learns through image and example, not rules alone.
+- **Aphoristic epigraphs.** Each chapter opens with a single resonant line — a classical proverb, a line from the *I Ching* or the *Tao Te Ching*, a distilled teaching — that sets its spirit in one breath.
+- **Lineage-respecting.** Chinese terms given in pinyin, with characters and meaning on first use; the tradition's masters and texts named with respect.
+- **Spiritually framed.** The home is addressed as a living being, the land as animate, the reader as a "practitioner" walking a path of cultivation.
 - **Non-dogmatic.** Where schools disagree (e.g., Compass Bagua vs. Western three-door Bagua), both are presented honestly, with the classical approach favored and the reasoning given.
-- **Grounded.** No guarantees of wealth or miracles. Feng Shui shapes one of three types of luck; effort, virtue, and destiny share the work.
+- **Grounded.** No guarantees of wealth or miracles. Feng Shui shapes one of three types of luck; effort, virtue, and destiny share the work. Atmosphere never displaces honesty.
 - **Romanization:** pinyin throughout (e.g., *Qi*, *Bagua*, *BaZi*), with Wade-Giles or common variants noted where readers may encounter them.
+
+*On the source of this voice:* the immersive, story-rich cadence above is modelled on evocative writing that treats an enchanted worldview with full seriousness. Only the **voice** is borrowed — the book imports no fictional, invented, or game content, and every claim remains rooted in the classical tradition and the factual sources.
 
 ---
 
@@ -583,6 +591,7 @@ How the uploaded research maps into the book, so nothing is lost:
 | **Feng Shui Kua reference** | Chapter 14 — full Eight Mansions detail, the four auspicious and four inauspicious directions, and Appendix A tables |
 | **Sample BaZi chart** (Joey Yap's Ming Pan) | Chapter 16 — the worked, anonymized example for teaching the reading of a Four Pillars chart, including Luck Pillars and Noble People |
 | **The "Wind and Water" visual book (HTML)** | The designed/illustrated edition concept and the working title; informs the Illustration Plan above |
+| **RPG "Magic" sourcebook chapter** (Water Margin-themed tabletop game) | **Voice and tone only** (see §4) — informs the book's evocative, story-rich register. No fictional, invented, or game-mechanical content is imported; it is not treated as a factual source. |
 
 The book also deliberately **adds** material the sources only touch lightly, to meet the "comprehensive, leaves nothing out" goal: the cosmology and history (Part I), the Luo Pan and the He Tu/Lo Shu (Ch 10–11), full Flying Star chart construction (Ch 20), Form School landscape reading (Part VI), date selection (Ch 44), and the practitioner's ethics (Ch 46).
 
@@ -594,7 +603,7 @@ The book also deliberately **adds** material the sources only touch lightly, to 
 - **Page count:** 300+ (estimated ~396 with diagrams and white space)
 - **Trim size:** 6 × 9 in (152 × 229 mm) — standard for an authoritative trade reference; or 7 × 10 in if the illustrated treatment is emphasized
 - **Chapter length:** ~2,000–2,600 words average; room-by-room chapters (Part VII) run longer
-- **Apparatus:** running heads, part dividers, a quotation or classical aphorism opening each chapter, a "Practice" box closing each chapter with a concrete action
+- **Apparatus:** running heads, part dividers, an aphoristic epigraph opening each chapter, a short illustrative vignette where a principle is best taught through a scene, and a "Practice" box closing each chapter with a concrete action
 - **Reader tools:** floor-plan templates, checklists, and reference tables gathered in the appendices for photocopy/printing
 
 ---
@@ -620,7 +629,7 @@ A few choices to settle before or early in the drafting:
 1. **Final title** — confirm *Wind and Water* or choose an alternative; decide the subtitle.
 2. **Depth of Flying Stars** — how far to take chart *construction* (Ch 20) versus chart *interpretation*. Recommendation: teach construction fully but keep worked examples generous, since this is the steepest chapter for readers.
 3. **The author's presence** — first-person teaching voice throughout, or a more impersonal classical register. Recommendation: a warm first-person in prefaces, chapter openings, and "Practice" boxes; an authoritative instructional voice in the body.
-4. **Personal anecdotes / case studies** — whether to include short case stories of homes transformed. Recommendation: yes — one brief, anonymized case per room chapter in Part VII.
+4. **Narrative vignettes and case studies** — the storytelling-as-instruction principle (see §4) calls for short illustrative scenes throughout. Confirm scope: a brief anonymized vignette to open or illustrate each chapter, plus one fuller case study per room chapter in Part VII. Recommendation: yes to both.
 5. **Illustration commission** — whether diagrams are commissioned bespoke (recommended for a Collector's-Edition feel) or assembled from standard schematics.
 6. **The Western three-door Bagua** — confirm the book teaches the classical compass method as primary while acknowledging the BTB method (as outlined in Ch 12), rather than teaching both equally.
 
