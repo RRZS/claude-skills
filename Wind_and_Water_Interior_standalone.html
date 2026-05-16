@@ -832,53 +832,150 @@ table.elements td.el{
 <!-- ===================== BACKGROUND ART SPRITE ===================== -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <defs>
+  <filter id="mist" x="-20%" y="-20%" width="140%" height="140%">
+    <feGaussianBlur stdDeviation="7"/>
+  </filter>
+  <filter id="mist-soft" x="-30%" y="-30%" width="160%" height="160%">
+    <feGaussianBlur stdDeviation="15"/>
+  </filter>
+  <linearGradient id="wash-far" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#cdbf9c" stop-opacity="0"/>
+    <stop offset="1" stop-color="#9aab97" stop-opacity=".55"/>
+  </linearGradient>
+  <linearGradient id="wash-water" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#7d8f8c" stop-opacity=".4"/>
+    <stop offset="1" stop-color="#cdc4a8" stop-opacity=".1"/>
+  </linearGradient>
+  <radialGradient id="moonglow" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="#f3ead0" stop-opacity=".85"/>
+    <stop offset="0.6" stop-color="#f3ead0" stop-opacity=".3"/>
+    <stop offset="1" stop-color="#f3ead0" stop-opacity="0"/>
+  </radialGradient>
+
+  <!-- ===== shan-shui mountain landscape ===== -->
   <symbol id="bg-mountains" viewBox="0 0 600 900">
-    <path d="M0 900 L0 705 Q110 575 235 675 Q330 752 430 628 Q515 525 600 650 L600 900 Z" fill="#e3d8bf" opacity=".62"/>
-    <path d="M0 900 L0 770 Q150 672 320 752 Q455 814 600 720 L600 900 Z" fill="#cdbf9c" opacity=".6"/>
-    <path d="M0 900 L0 828 Q200 766 405 818 Q512 845 600 802 L600 900 Z" fill="#b6a47c" opacity=".55"/>
-    <path d="M44 690 Q124 612 206 678" fill="none" stroke="#3f5d72" stroke-width="2" opacity=".22"/>
-    <circle cx="470" cy="150" r="34" fill="none" stroke="#9c3b2e" stroke-width="1.4" opacity=".3"/>
+    <circle cx="468" cy="158" r="78" fill="url(#moonglow)"/>
+    <circle cx="468" cy="158" r="33" fill="#efe6cc" opacity=".55"/>
+    <!-- farthest range, heavily blurred -->
+    <g filter="url(#mist-soft)" opacity=".4">
+      <path d="M0 470 L70 360 L150 440 L240 320 L340 430 L440 330 L540 420 L600 360 L600 560 L0 560 Z" fill="#8b9bac"/>
+    </g>
+    <!-- mid range -->
+    <g filter="url(#mist)" opacity=".5">
+      <path d="M0 560 Q120 430 250 530 Q360 612 470 480 Q540 396 600 500 L600 660 L0 660 Z" fill="#6f8597"/>
+    </g>
+    <!-- drifting mist band -->
+    <rect x="0" y="540" width="600" height="120" fill="url(#wash-far)" opacity=".7"/>
+    <g stroke="#efe8d2" stroke-width="9" fill="none" stroke-linecap="round" opacity=".6" filter="url(#mist)">
+      <path d="M-30 600 C120 575 240 625 600 590"/>
+      <path d="M-20 648 C160 628 320 668 620 636"/>
+    </g>
+    <!-- near peaks with texture strokes -->
+    <path d="M0 900 L0 690 Q120 560 250 660 Q360 742 470 612 Q540 520 600 626 L600 900 Z" fill="#5d6f6b" opacity=".62"/>
+    <g stroke="#3a4744" stroke-width="1.6" fill="none" opacity=".3" stroke-linecap="round">
+      <path d="M70 660 Q120 600 168 652"/>
+      <path d="M250 660 Q310 612 360 690"/>
+      <path d="M470 612 Q510 560 552 614"/>
+    </g>
+    <!-- pavilion on a near ridge -->
+    <g stroke="#3a3128" stroke-width="2" fill="none" opacity=".5" stroke-linecap="round">
+      <path d="M126 636 L150 614 L174 636"/>
+      <path d="M132 636 L132 664 M168 636 L168 664"/>
+      <path d="M120 636 L180 636"/>
+    </g>
+    <!-- water and a lone boat -->
+    <rect x="0" y="790" width="600" height="110" fill="url(#wash-water)"/>
+    <g stroke="#4a5a5e" stroke-width="1.4" fill="none" opacity=".3" stroke-linecap="round">
+      <path d="M40 832 h150 M220 850 h180 M70 868 h120 M380 838 h170"/>
+    </g>
+    <g stroke="#2f2a22" stroke-width="2.4" fill="none" opacity=".55" stroke-linecap="round">
+      <path d="M300 824 q22 14 44 0"/>
+      <path d="M322 824 L322 808"/>
+    </g>
+    <!-- distant birds -->
+    <g stroke="#3a3128" stroke-width="1.6" fill="none" opacity=".4" stroke-linecap="round">
+      <path d="M210 250 q9 -8 18 0 q9 -8 18 0"/>
+      <path d="M250 280 q7 -6 14 0 q7 -6 14 0"/>
+    </g>
   </symbol>
+
+  <!-- ===== drifting mist and clouds ===== -->
   <symbol id="bg-clouds" viewBox="0 0 600 900">
-    <g fill="none" stroke="#c9bd9c" stroke-width="3" stroke-linecap="round" opacity=".5">
-      <path d="M-20 130 C90 100 150 165 270 135 C360 112 420 150 540 122"/>
-      <path d="M40 250 C140 225 200 280 330 252 C420 233 470 268 620 240"/>
-      <path d="M-10 690 C110 662 170 720 300 690 C400 667 460 705 600 678"/>
-      <path d="M60 805 C160 783 220 831 350 805 C440 787 500 820 630 797"/>
+    <g filter="url(#mist)" opacity=".5">
+      <ellipse cx="200" cy="150" rx="200" ry="46" fill="#d8cdb0"/>
+      <ellipse cx="430" cy="430" rx="220" ry="54" fill="#cabf9f"/>
+      <ellipse cx="170" cy="720" rx="210" ry="50" fill="#d8cdb0"/>
     </g>
-    <g fill="#d8cdb0" opacity=".26">
-      <ellipse cx="430" cy="62" rx="120" ry="28"/>
-      <ellipse cx="170" cy="470" rx="140" ry="32"/>
+    <g fill="none" stroke="#bfb290" stroke-width="3.4" stroke-linecap="round" opacity=".55">
+      <path d="M-30 128 C90 96 150 168 280 134 C372 110 430 152 560 118"/>
+      <path d="M30 196 C130 170 200 224 320 196 C410 176 470 210 620 184"/>
+      <path d="M40 470 C150 444 210 502 340 472 C430 451 490 488 630 460"/>
+      <path d="M-20 700 C110 672 170 732 300 700 C400 677 460 716 600 688"/>
+      <path d="M50 770 C150 748 220 798 350 772 C440 754 500 788 630 764"/>
+    </g>
+    <!-- mountain peak emerging through the mist -->
+    <g opacity=".34" filter="url(#mist)">
+      <path d="M380 560 L470 320 L560 560 Z" fill="#7d8f97"/>
+    </g>
+    <!-- a crane in flight -->
+    <g stroke="#3a3128" stroke-width="2" fill="none" opacity=".45" stroke-linecap="round">
+      <path d="M250 330 q26 -22 52 0 q26 -22 52 0"/>
+      <path d="M298 330 q4 16 8 26"/>
     </g>
   </symbol>
+
+  <!-- ===== bamboo grove ===== -->
   <symbol id="bg-bamboo" viewBox="0 0 600 900">
-    <g fill="none" stroke="#9aaa7d" stroke-linecap="round" opacity=".5">
+    <g filter="url(#mist-soft)" opacity=".3">
+      <rect x="20" y="0" width="170" height="900" fill="#9aaa7d"/>
+    </g>
+    <g fill="none" stroke="#8a9b6e" stroke-linecap="round" opacity=".5">
       <path d="M62 905 C54 640 52 360 70 70" stroke-width="8"/>
       <path d="M126 905 C136 680 138 430 120 200" stroke-width="5.5"/>
+      <path d="M168 905 C160 700 158 470 176 280" stroke-width="4"/>
+      <path d="M28 905 C22 720 26 540 14 380" stroke-width="3.4" opacity=".34"/>
     </g>
-    <g stroke="#7d8f63" stroke-width="3" opacity=".5">
+    <g stroke="#6f8056" stroke-width="3" opacity=".5">
       <path d="M48 740 h28 M51 560 h28 M56 380 h27 M62 210 h25"/>
       <path d="M110 700 h24 M115 500 h24 M119 320 h22"/>
+      <path d="M158 660 h20 M161 480 h20 M166 320 h19"/>
     </g>
-    <g fill="#8a9a6f" opacity=".4">
+    <g fill="#7d8f5f" opacity=".42">
       <path d="M70 90 Q124 52 188 78 Q130 110 70 90 Z"/>
       <path d="M70 104 Q120 122 158 184 Q104 168 70 104 Z"/>
       <path d="M120 214 Q170 182 226 206 Q168 234 120 214 Z"/>
       <path d="M120 228 Q160 246 190 300 Q140 286 120 228 Z"/>
+      <path d="M176 290 Q224 262 272 286 Q220 312 176 290 Z"/>
+      <path d="M176 302 Q210 320 232 366 Q190 352 176 302 Z"/>
+    </g>
+    <!-- a perched sparrow -->
+    <g stroke="#3a3128" stroke-width="2" fill="none" opacity=".5" stroke-linecap="round">
+      <path d="M120 200 q14 -10 26 -2 q-2 12 -14 14 q-10 -2 -12 -12 Z" fill="#3a3128" fill-opacity=".25"/>
+      <path d="M146 198 l14 -6"/>
     </g>
   </symbol>
+
+  <!-- ===== gnarled pine branch ===== -->
   <symbol id="bg-pine" viewBox="0 0 600 900">
-    <g fill="none" stroke="#6f7d5a" stroke-linecap="round" opacity=".5">
-      <path d="M612 36 C520 56 438 110 356 206" stroke-width="5"/>
-      <path d="M472 92 C490 52 482 22 448 4" stroke-width="3.5"/>
-      <path d="M414 144 C432 104 422 70 392 50" stroke-width="3.5"/>
-      <path d="M356 206 C350 172 360 142 388 122" stroke-width="3"/>
+    <circle cx="120" cy="150" r="64" fill="url(#moonglow)"/>
+    <circle cx="120" cy="150" r="28" fill="#efe6cc" opacity=".5"/>
+    <g fill="none" stroke="#5e6b4c" stroke-linecap="round" opacity=".55">
+      <path d="M612 30 C520 56 438 118 350 214 C300 270 250 300 196 312" stroke-width="6"/>
+      <path d="M470 92 C492 50 484 18 448 -2" stroke-width="4"/>
+      <path d="M410 150 C430 106 420 70 388 48" stroke-width="4"/>
+      <path d="M350 214 C346 176 358 144 392 122" stroke-width="3.4"/>
+      <path d="M286 268 C262 234 256 196 274 160" stroke-width="3"/>
     </g>
-    <g stroke="#7c8a64" stroke-width="1.5" opacity=".48" stroke-linecap="round">
-      <path d="M462 26 l-16 -9 M462 26 l-17 0 M462 26 l-16 9 M462 26 l-9 -16 M462 26 l-9 16 M462 26 l1 -18 M462 26 l1 18"/>
-      <path d="M404 78 l-16 -9 M404 78 l-17 0 M404 78 l-16 9 M404 78 l-9 -16 M404 78 l-9 16 M404 78 l1 -18 M404 78 l1 18"/>
-      <path d="M366 178 l-16 -9 M366 178 l-17 0 M366 178 l-16 9 M366 178 l-9 -16 M366 178 l-9 16 M366 178 l1 -18 M366 178 l1 18"/>
-      <path d="M520 56 l-15 -10 M520 56 l-16 -3 M520 56 l-12 12 M520 56 l-4 -17 M520 56 l5 15"/>
+    <g stroke="#6f7d54" stroke-width="1.5" opacity=".5" stroke-linecap="round">
+      <path d="M462 24 l-17 -10 M462 24 l-18 0 M462 24 l-17 10 M462 24 l-10 -17 M462 24 l-10 17 M462 24 l1 -19 M462 24 l1 19"/>
+      <path d="M402 80 l-17 -10 M402 80 l-18 0 M402 80 l-17 10 M402 80 l-10 -17 M402 80 l-10 17 M402 80 l1 -19 M402 80 l1 19"/>
+      <path d="M386 124 l-16 -9 M386 124 l-17 0 M386 124 l-16 9 M386 124 l-9 -16 M386 124 l-9 16 M386 124 l1 -18 M386 124 l1 18"/>
+      <path d="M274 162 l-16 -9 M274 162 l-17 0 M274 162 l-16 9 M274 162 l-9 -16 M274 162 l-9 16 M274 162 l1 -18 M274 162 l1 18"/>
+      <path d="M520 54 l-16 -10 M520 54 l-17 -3 M520 54 l-12 13 M520 54 l-4 -18 M520 54 l5 16"/>
+    </g>
+    <!-- mist drifting past the trunk -->
+    <g stroke="#efe8d2" stroke-width="10" fill="none" stroke-linecap="round" opacity=".5" filter="url(#mist)">
+      <path d="M-30 360 C140 332 300 380 640 344"/>
     </g>
   </symbol>
 </defs>
@@ -1020,9 +1117,17 @@ table.elements td.el{
     <div class="chinese">基</div>
   </div>
   <svg class="art-bg" viewBox="0 0 600 220" preserveAspectRatio="none" style="bottom:0;height:1.9in;" aria-hidden="true">
+    <circle cx="500" cy="48" r="40" fill="url(#moonglow)"/>
+    <circle cx="500" cy="48" r="17" fill="#efe6cc" opacity=".55"/>
+    <g filter="url(#mist)" opacity=".42"><path d="M0 130 L80 70 L180 120 L300 60 L420 118 L540 66 L600 100 L600 220 L0 220 Z" fill="#8b9bac"/></g>
     <path d="M0 220 L0 150 Q120 60 250 130 Q350 185 460 80 Q530 15 600 95 L600 220 Z" fill="#e3d8bf" opacity=".75"/>
+    <rect x="0" y="120" width="600" height="70" fill="url(#wash-far)" opacity=".7"/>
     <path d="M0 220 L0 175 Q160 105 320 165 Q470 220 600 140 L600 220 Z" fill="#cdbf9c" opacity=".7"/>
-    <path d="M0 220 L0 200 Q200 165 400 200 Q520 220 600 195 L600 220 Z" fill="#b6a47c" opacity=".6"/>
+    <path d="M0 220 L0 200 Q200 165 400 200 Q520 220 600 195 L600 220 Z" fill="#5d6f6b" opacity=".55"/>
+    <g stroke="#3a3128" stroke-width="1.4" fill="none" opacity=".4" stroke-linecap="round">
+      <path d="M150 56 q8 -7 16 0 q8 -7 16 0"/>
+      <path d="M186 78 q6 -5 12 0 q6 -5 12 0"/>
+    </g>
   </svg>
 </div>
 
@@ -1354,8 +1459,17 @@ table.elements td.el{
     <div class="chinese">人</div>
   </div>
   <svg class="art-bg" viewBox="0 0 600 220" preserveAspectRatio="none" style="bottom:0;height:1.9in;" aria-hidden="true">
+    <g filter="url(#mist)" opacity=".42"><path d="M0 120 L100 60 L210 110 L330 56 L450 110 L560 62 L600 96 L600 220 L0 220 Z" fill="#8b9bac"/></g>
     <path d="M0 220 L0 140 Q140 70 280 135 Q400 190 520 95 Q560 65 600 110 L600 220 Z" fill="#e3d8bf" opacity=".75"/>
+    <rect x="0" y="118" width="600" height="66" fill="url(#wash-far)" opacity=".7"/>
     <path d="M0 220 L0 180 Q180 110 360 170 Q480 210 600 150 L600 220 Z" fill="#cdbf9c" opacity=".7"/>
+    <rect x="0" y="186" width="600" height="34" fill="url(#wash-water)"/>
+    <g stroke="#4a5a5e" stroke-width="1.2" fill="none" opacity=".3" stroke-linecap="round">
+      <path d="M40 200 h140 M230 208 h150 M420 198 h150"/>
+    </g>
+    <g stroke="#2f2a22" stroke-width="2" fill="none" opacity=".55" stroke-linecap="round">
+      <path d="M270 196 q18 11 36 0"/><path d="M288 196 L288 183"/>
+    </g>
   </svg>
 </div>
 
@@ -1403,8 +1517,15 @@ table.elements td.el{
     <div class="chinese">家</div>
   </div>
   <svg class="art-bg" viewBox="0 0 600 220" preserveAspectRatio="none" style="bottom:0;height:1.9in;" aria-hidden="true">
+    <g filter="url(#mist)" opacity=".42"><path d="M0 124 L90 64 L200 116 L320 58 L440 114 L560 66 L600 100 L600 220 L0 220 Z" fill="#8b9bac"/></g>
     <path d="M0 220 L0 150 Q150 80 300 140 Q430 190 560 100 L600 120 L600 220 Z" fill="#e3d8bf" opacity=".75"/>
-    <path d="M0 220 L0 185 Q200 120 400 175 Q500 200 600 160 L600 220 Z" fill="#cdbf9c" opacity=".7"/>
+    <rect x="0" y="124" width="600" height="68" fill="url(#wash-far)" opacity=".7"/>
+    <path d="M0 220 L0 185 Q200 120 400 175 Q500 200 600 160 L600 220 Z" fill="#5d6f6b" opacity=".55"/>
+    <g stroke="#3a3128" stroke-width="2" fill="none" opacity=".5" stroke-linecap="round">
+      <path d="M250 168 L268 150 L286 168"/>
+      <path d="M256 168 L256 190 M280 168 L280 190"/>
+      <path d="M244 168 L292 168"/>
+    </g>
   </svg>
 </div>
 
@@ -1485,8 +1606,16 @@ table.elements td.el{
     <div class="chinese">行</div>
   </div>
   <svg class="art-bg" viewBox="0 0 600 220" preserveAspectRatio="none" style="bottom:0;height:1.9in;" aria-hidden="true">
+    <g filter="url(#mist)" opacity=".42"><path d="M0 116 L96 58 L206 108 L326 54 L446 108 L566 60 L600 92 L600 220 L0 220 Z" fill="#8b9bac"/></g>
     <path d="M0 220 L0 130 Q130 55 270 125 Q390 185 510 90 Q555 60 600 105 L600 220 Z" fill="#e3d8bf" opacity=".75"/>
-    <path d="M0 220 L0 175 Q170 100 350 165 Q480 210 600 145 L600 220 Z" fill="#cdbf9c" opacity=".7"/>
+    <g stroke="#efe8d2" stroke-width="7" fill="none" stroke-linecap="round" opacity=".6" filter="url(#mist)">
+      <path d="M-20 140 C140 122 320 156 620 130"/>
+    </g>
+    <path d="M0 220 L0 175 Q170 100 350 165 Q480 210 600 145 L600 220 Z" fill="#5d6f6b" opacity=".55"/>
+    <g stroke="#3a3128" stroke-width="1.8" fill="none" opacity=".45" stroke-linecap="round">
+      <path d="M210 70 q20 -17 40 0 q20 -17 40 0"/>
+      <path d="M248 70 q3 12 6 20"/>
+    </g>
   </svg>
 </div>
 
