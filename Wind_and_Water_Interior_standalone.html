@@ -1,0 +1,1676 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wind &amp; Water — Interior</title>
+<style>
+/* =====================================================================
+   Wind & Water — Interior Book Stylesheet
+   A print-style layout: 6in x 9in pages, classical editorial typography.
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+SC:wght@400;600;900&display=swap');
+
+:root{
+  --display:'Cormorant Garamond', Georgia, serif;
+  --serif:'Lora', Georgia, serif;
+  --cjk:'Noto Serif SC', serif;
+
+  --ink:#1c1813;
+  --ink-soft:#3b342b;
+  --ink-mute:#8a7c66;
+
+  --cinnabar:#9c3b2e;
+  --cinnabar-d:#7a2a20;
+  --gold:#b8945f;
+  --gold-d:#8c6d3f;
+
+  --paper:#f7f1e3;
+  --paper-deep:#efe6d2;
+  --paper-edge:#e3d8bf;
+  --backdrop:#26221d;
+}
+
+*{box-sizing:border-box;}
+
+html,body{margin:0;padding:0;}
+
+body{
+  background:var(--backdrop);
+  background-image:radial-gradient(circle at 50% 0%, #322c25 0%, var(--backdrop) 70%);
+  font-family:var(--serif);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  padding:48px 0;
+}
+
+/* ---------- Book + Page ---------- */
+.book{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:34px;
+}
+
+.page{
+  position:relative;
+  width:6in;
+  height:9in;
+  background:var(--paper);
+  padding:0.72in 0.76in 0.66in;
+  box-shadow:0 18px 50px rgba(0,0,0,.55);
+  overflow:hidden;
+}
+.page::after{ /* inner spine shadow hint */
+  content:"";
+  position:absolute;
+  top:0;bottom:0;
+  width:26px;
+  pointer-events:none;
+}
+.page.recto::after{ left:0;  background:linear-gradient(90deg, rgba(0,0,0,.10), transparent); }
+.page.verso::after{ right:0; background:linear-gradient(-90deg, rgba(0,0,0,.10), transparent); }
+
+/* screen-only page label */
+.page-num-screen{
+  position:absolute;
+  top:9px; right:12px;
+  font-family:var(--serif);
+  font-size:7pt;
+  letter-spacing:.12em;
+  color:var(--ink-mute);
+  opacity:.6;
+}
+
+/* folio (printed page number) */
+.folio{
+  position:absolute;
+  left:0; right:0;
+  bottom:0.42in;
+  text-align:center;
+}
+.folio .num{
+  font-family:var(--display);
+  font-size:10.5pt;
+  letter-spacing:.18em;
+  color:var(--ink-mute);
+}
+.page.recto .folio .num::after{ content:"  \2767"; color:var(--gold); }
+.page.verso .folio .num::before{ content:"\2767  "; color:var(--gold); }
+
+/* running head */
+.run-head{
+  display:flex;
+  justify-content:space-between;
+  font-family:var(--display);
+  font-size:9pt;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--ink-mute);
+  padding-bottom:7px;
+  border-bottom:.5px solid var(--gold);
+}
+
+/* decorative SVG layers sit behind text */
+.art{ display:block; }
+.art-bg{
+  position:absolute;
+  left:0; right:0;
+  pointer-events:none;
+  z-index:1;
+}
+
+/* per-page dedicated background watermark */
+.pg-bg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:0;
+}
+.page > .half-title,
+.page > .title-page,
+.page > .copy-page,
+.page > .dedication,
+.page > .epigraph,
+.page > .toc-page,
+.page > .part-opener,
+.page > .chapter-opener,
+.page > .body-content,
+.page > .run-head,
+.page > .folio,
+.page > .page-num-screen{
+  position:relative;
+  z-index:2;
+}
+
+/* =====================================================================
+   FRONT MATTER
+   ===================================================================== */
+
+/* ---- Half-title ---- */
+.half-title{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:30px;
+  text-align:center;
+}
+.half-title .ornament{
+  font-size:20pt;
+  letter-spacing:.32em;
+  color:var(--gold-d);
+}
+.half-title .ttl{
+  font-family:var(--display);
+  font-size:38pt;
+  font-weight:500;
+  letter-spacing:.06em;
+  color:var(--ink);
+}
+.half-title .amp{ font-style:italic; color:var(--cinnabar); }
+.half-title .enso{ width:150px; height:auto; }
+
+/* ---- Title page ---- */
+.title-page{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  text-align:center;
+  padding:0.2in 0;
+}
+.title-page .stamp-wrap{ position:relative; }
+.title-page .stamp{
+  font-family:var(--cjk);
+  font-weight:900;
+  font-size:34pt;
+  color:var(--cinnabar);
+  letter-spacing:.08em;
+}
+.title-page .by{
+  font-family:var(--display);
+  font-style:italic;
+  font-size:14pt;
+  color:var(--ink-mute);
+  margin-bottom:6px;
+}
+.title-page .big{
+  font-family:var(--display);
+  font-size:58pt;
+  font-weight:500;
+  line-height:1;
+  letter-spacing:.03em;
+  margin:2px 0 12px;
+}
+.title-page .big .it{ font-style:italic; color:var(--cinnabar); }
+.title-page .sub{
+  font-family:var(--serif);
+  font-size:11.5pt;
+  font-style:italic;
+  line-height:1.55;
+  color:var(--ink-soft);
+  max-width:3.6in;
+  margin:0 auto;
+}
+.title-page .rule{
+  width:54px; height:1px;
+  background:var(--gold);
+  margin:6px auto;
+  position:relative;
+}
+.title-page .rule::before,
+.title-page .rule::after{
+  content:"\25C6";
+  position:absolute; top:-7px;
+  font-size:7pt; color:var(--gold-d);
+}
+.title-page .rule::before{ left:-16px; }
+.title-page .rule::after{ right:-16px; }
+.title-page .author{
+  font-family:var(--display);
+  font-size:21pt;
+  font-weight:500;
+  letter-spacing:.05em;
+  color:var(--ink);
+}
+.title-page .imprint{
+  font-family:var(--display);
+  font-size:11pt;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--ink-mute);
+}
+
+/* ---- Copyright ---- */
+.copy-page{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:9px;
+}
+.copy-page .block{
+  font-family:var(--serif);
+  font-size:8pt;
+  line-height:1.62;
+  color:var(--ink-soft);
+}
+.copy-page .block strong{ color:var(--ink); }
+.copy-page .iso{
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.04em;
+  color:var(--ink-mute);
+}
+
+/* ---- Dedication ---- */
+.dedication{
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.dedication p{
+  font-family:var(--display);
+  font-style:italic;
+  font-size:17pt;
+  line-height:1.7;
+  color:var(--ink-soft);
+}
+.dedication .orn{
+  margin-top:26px;
+  font-size:14pt;
+  letter-spacing:.4em;
+  color:var(--gold-d);
+}
+
+/* ---- Epigraph ---- */
+.epigraph{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:8px;
+}
+.epigraph .quote{
+  font-family:var(--display);
+  font-style:italic;
+  font-size:15pt;
+  line-height:1.6;
+  color:var(--ink-soft);
+}
+.epigraph .attr{
+  font-family:var(--serif);
+  font-size:9pt;
+  letter-spacing:.06em;
+  color:var(--ink-mute);
+  text-align:right;
+}
+
+/* ---- Contents ---- */
+.toc-page h1{
+  font-family:var(--display);
+  font-weight:300;
+  font-size:40pt;
+  margin:0 0 4px;
+  color:var(--ink);
+}
+.toc-page .lead{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:9.5pt;
+  color:var(--ink-mute);
+  margin:0 0 16px;
+}
+.toc-page .part{
+  font-family:var(--display);
+  font-size:12.5pt;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--cinnabar);
+  margin:14px 0 6px;
+  padding-bottom:3px;
+  border-bottom:.5px solid var(--gold);
+}
+.toc-page .part .roman{
+  font-style:italic;
+  color:var(--gold-d);
+  margin-right:8px;
+  text-transform:lowercase;
+}
+.toc-page .row{
+  display:grid;
+  grid-template-columns:26px 1fr auto;
+  gap:8px;
+  align-items:baseline;
+  font-family:var(--serif);
+  font-size:9.5pt;
+  padding:2.5px 0;
+  color:var(--ink-soft);
+}
+.toc-page .row .ch:first-child{
+  font-family:var(--display);
+  font-size:10pt;
+  color:var(--gold-d);
+}
+.toc-page .row .pg{
+  font-variant-numeric:tabular-nums;
+  color:var(--ink-mute);
+}
+.toc-page .row.front .ch{ font-style:italic; }
+
+/* =====================================================================
+   PART OPENERS
+   ===================================================================== */
+.part-opener{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+}
+.part-opener .num{
+  font-family:var(--display);
+  font-size:12pt;
+  letter-spacing:.4em;
+  text-transform:uppercase;
+  color:var(--cinnabar);
+}
+.part-opener .trig{
+  font-size:17pt;
+  letter-spacing:.3em;
+  color:var(--gold-d);
+  margin:14px 0;
+}
+.part-opener .ttl{
+  font-family:var(--display);
+  font-size:46pt;
+  font-weight:500;
+  line-height:1.05;
+  color:var(--ink);
+}
+.part-opener .ttl .it{ font-style:italic; color:var(--cinnabar); }
+.part-opener .rule{
+  width:60px; height:1px;
+  background:var(--gold);
+  margin:18px 0;
+}
+.part-opener .gloss{
+  font-family:var(--display);
+  font-style:italic;
+  font-size:13pt;
+  line-height:1.6;
+  color:var(--ink-soft);
+  max-width:3.4in;
+}
+.part-opener .chinese{
+  font-family:var(--cjk);
+  font-size:64pt;
+  font-weight:400;
+  color:var(--paper-edge);
+  margin-top:18px;
+  line-height:1;
+}
+
+/* =====================================================================
+   CHAPTER OPENERS
+   ===================================================================== */
+.chapter-opener{ height:100%; display:flex; flex-direction:column; }
+.chapter-opener .top{ text-align:center; }
+.chapter-opener .meta{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-family:var(--display);
+  font-size:10pt;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--cinnabar);
+}
+.chapter-opener .meta .roman{ font-style:italic; color:var(--gold-d); }
+.chapter-opener .meta .rule{
+  width:34px; height:1px;
+  background:var(--gold);
+  display:inline-block;
+}
+.chapter-opener .glyph{
+  font-size:30pt;
+  color:var(--gold-d);
+  margin:14px 0 6px;
+}
+.chapter-opener .ch-ttl{
+  font-family:var(--display);
+  font-size:38pt;
+  font-weight:500;
+  line-height:1.08;
+  color:var(--ink);
+}
+.chapter-opener .ch-ttl .it{ font-style:italic; color:var(--cinnabar); }
+.chapter-opener .ch-sub{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:10pt;
+  line-height:1.55;
+  color:var(--ink-mute);
+  max-width:3.5in;
+  margin:12px auto 0;
+}
+.chapter-opener .body-block{ margin-top:auto; }
+.chapter-opener .body-block .lead{
+  font-family:var(--serif);
+  font-size:10.5pt;
+  line-height:1.72;
+  color:var(--ink-soft);
+  text-align:justify;
+}
+.chapter-opener .body-block .lead.first{ text-indent:0; }
+.chapter-opener .body-block .lead em{ color:var(--cinnabar-d); }
+
+/* =====================================================================
+   BODY CONTENT
+   ===================================================================== */
+.body-content{ font-family:var(--serif); }
+.body-content h1{
+  font-family:var(--display);
+  font-weight:300;
+  color:var(--ink);
+}
+.body-content h2.sub{
+  font-family:var(--display);
+  font-size:16pt;
+  font-weight:600;
+  color:var(--cinnabar);
+  margin:16px 0 6px;
+  letter-spacing:.01em;
+}
+.body-content h2.sub::before{
+  content:"\2767";
+  color:var(--gold);
+  font-size:9pt;
+  margin-right:7px;
+  vertical-align:1.5px;
+}
+.body-content p{
+  font-size:10pt;
+  line-height:1.74;
+  color:var(--ink-soft);
+  margin:0 0 7px;
+  text-align:justify;
+  text-indent:1.1em;
+}
+.body-content p.first,
+.body-content p.lead{ text-indent:0; }
+.body-content p.lead{
+  font-style:italic;
+  font-size:10.5pt;
+  color:var(--ink-mute);
+}
+.body-content p em{ color:var(--cinnabar-d); font-style:italic; }
+.body-content strong{ color:var(--ink); }
+
+/* drop cap */
+.dropcap::first-letter{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:46pt;
+  line-height:.78;
+  float:left;
+  margin:6px 7px 0 0;
+  color:var(--cinnabar);
+}
+
+/* pull quote */
+blockquote.pull{
+  font-family:var(--display);
+  font-style:italic;
+  font-size:15pt;
+  line-height:1.5;
+  color:var(--cinnabar-d);
+  text-align:center;
+  margin:16px 0.25in;
+  padding:12px 0;
+  border-top:.5px solid var(--gold);
+  border-bottom:.5px solid var(--gold);
+}
+
+/* bullet list */
+ul.bullet{
+  list-style:none;
+  margin:6px 0 8px;
+  padding:0;
+}
+ul.bullet li{
+  font-size:9.7pt;
+  line-height:1.62;
+  color:var(--ink-soft);
+  padding-left:20px;
+  margin-bottom:6px;
+  position:relative;
+  text-align:justify;
+}
+ul.bullet li::before{
+  content:"\2767";
+  position:absolute;
+  left:2px;
+  color:var(--gold-d);
+}
+ul.bullet li strong{ color:var(--cinnabar-d); }
+
+/* side note */
+.sidenote{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:9pt;
+  line-height:1.6;
+  color:var(--ink-mute);
+  background:var(--paper-deep);
+  border-left:2px solid var(--gold);
+  padding:10px 14px;
+  margin:12px 0;
+}
+.sidenote em{ color:var(--cinnabar-d); }
+
+/* two-column */
+.two-col{ column-count:2; column-gap:22px; }
+.two-col p{ text-indent:1.1em; }
+.two-col p:first-child{ text-indent:0; }
+
+/* =====================================================================
+   TABLES, DIAGRAMS, WORKSHEETS
+   ===================================================================== */
+table.elements{
+  width:100%;
+  border-collapse:collapse;
+  margin:8px 0 6px;
+  font-family:var(--serif);
+}
+table.elements th{
+  font-family:var(--display);
+  font-size:9pt;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--cinnabar);
+  text-align:left;
+  padding:6px 8px;
+  border-bottom:1px solid var(--gold);
+}
+table.elements td{
+  font-size:8.6pt;
+  padding:6px 8px;
+  color:var(--ink-soft);
+  border-bottom:.5px solid var(--paper-edge);
+}
+table.elements td.el{
+  font-family:var(--display);
+  font-size:11pt;
+  font-weight:600;
+  color:var(--cinnabar-d);
+}
+
+.diagram,
+.worksheet{
+  background:var(--paper-deep);
+  border:.5px solid var(--gold);
+  border-radius:3px;
+  padding:14px 16px;
+  margin:14px 0;
+}
+.diagram .lbl,
+.worksheet .lbl{
+  font-family:var(--display);
+  font-size:8.5pt;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--gold-d);
+  margin-bottom:5px;
+}
+.diagram .ttl,
+.worksheet .ttl{
+  font-family:var(--display);
+  font-size:15pt;
+  font-weight:600;
+  line-height:1.3;
+  color:var(--ink);
+  margin-bottom:5px;
+}
+.diagram .ttl em,
+.worksheet .ttl em{ color:var(--cinnabar); font-style:italic; }
+.diagram .desc{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:8.8pt;
+  line-height:1.55;
+  color:var(--ink-mute);
+}
+.worksheet ol{
+  margin:6px 0 0;
+  padding-left:18px;
+}
+.worksheet ol li{
+  font-family:var(--serif);
+  font-size:9.2pt;
+  line-height:1.6;
+  color:var(--ink-soft);
+  margin-bottom:5px;
+}
+.worksheet ol li em{ color:var(--cinnabar-d); }
+
+/* figure caption shared by SVG illustrations */
+.figure{ margin:12px 0; text-align:center; }
+.figure svg{ display:block; margin:0 auto; }
+.figure .cap{
+  font-family:var(--display);
+  font-size:8.5pt;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--gold-d);
+  margin-top:7px;
+}
+.figure .cap em{
+  font-style:italic;
+  text-transform:none;
+  letter-spacing:0;
+  color:var(--ink-mute);
+}
+
+.bagua-svg{ display:block; margin:6px auto; }
+
+/* =====================================================================
+   GLOSSARY / INDEX
+   ===================================================================== */
+.gloss-list{ margin-top:10px; }
+.gloss-list .entry{
+  display:grid;
+  grid-template-columns:1.35in 1fr;
+  gap:14px;
+  padding:7px 0;
+  border-bottom:.5px solid var(--paper-edge);
+}
+.gloss-list .term{
+  font-family:var(--display);
+  font-size:11.5pt;
+  font-weight:600;
+  color:var(--cinnabar-d);
+}
+.gloss-list .term small{
+  display:block;
+  font-family:var(--cjk);
+  font-size:10pt;
+  font-weight:400;
+  color:var(--ink-mute);
+  margin-top:1px;
+}
+.gloss-list .def{
+  font-family:var(--serif);
+  font-size:8.8pt;
+  line-height:1.6;
+  color:var(--ink-soft);
+}
+
+.index-cols{ column-count:2; column-gap:24px; }
+.index-cols .letter{
+  font-family:var(--display);
+  font-size:13pt;
+  font-weight:600;
+  color:var(--cinnabar);
+  margin:8px 0 3px;
+  break-after:avoid;
+}
+.index-cols .ix{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  font-family:var(--serif);
+  font-size:8.6pt;
+  line-height:1.5;
+  color:var(--ink-soft);
+  break-inside:avoid;
+}
+.index-cols .ix .pg{
+  font-variant-numeric:tabular-nums;
+  color:var(--ink-mute);
+  white-space:nowrap;
+}
+
+/* =====================================================================
+   AUTHOR PAGE / COLOPHON
+   ===================================================================== */
+.author-page{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.author-page .portrait{
+  margin:0 auto 16px;
+}
+.author-page p{ text-align:justify; }
+.author-page .divider{
+  margin-top:auto;
+  text-align:center;
+}
+.author-page .divider .orn{
+  font-size:15pt;
+  color:var(--gold-d);
+}
+
+.colophon{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.colophon .seal{
+  font-family:var(--cjk);
+  font-weight:900;
+  font-size:30pt;
+  color:var(--cinnabar);
+  border:1.5px solid var(--cinnabar);
+  border-radius:4px;
+  padding:8px 12px;
+  margin-bottom:16px;
+}
+.colophon .head{
+  font-family:var(--display);
+  font-size:18pt;
+  font-weight:600;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--ink);
+  margin-bottom:10px;
+}
+.colophon p{
+  font-family:var(--serif);
+  font-size:9pt;
+  line-height:1.66;
+  color:var(--ink-soft);
+  max-width:3.6in;
+  margin:0 0 7px;
+}
+.colophon .divider{ margin:14px 0; }
+.colophon .divider .orn{
+  font-size:13pt;
+  letter-spacing:.28em;
+  color:var(--gold-d);
+}
+
+/* =====================================================================
+   PRINT
+   ===================================================================== */
+@media print{
+  @page{ size:6in 9in; margin:0; }
+  body{ background:#fff; padding:0; }
+  .book{ gap:0; }
+  .page{
+    box-shadow:none;
+    page-break-after:always;
+    break-after:page;
+  }
+  .page::after{ display:none; }
+  .page-num-screen{ display:none; }
+}
+
+@media (max-width:680px){
+  .page{ transform:scale(.78); transform-origin:top center; margin-bottom:-1.6in; }
+}
+
+</style>
+</head>
+<body>
+<div class="book">
+
+<!-- ===================== BACKGROUND ART SPRITE ===================== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <symbol id="bg-mountains" viewBox="0 0 600 900">
+    <path d="M0 900 L0 705 Q110 575 235 675 Q330 752 430 628 Q515 525 600 650 L600 900 Z" fill="#e3d8bf" opacity=".62"/>
+    <path d="M0 900 L0 770 Q150 672 320 752 Q455 814 600 720 L600 900 Z" fill="#cdbf9c" opacity=".6"/>
+    <path d="M0 900 L0 828 Q200 766 405 818 Q512 845 600 802 L600 900 Z" fill="#b6a47c" opacity=".55"/>
+    <path d="M44 690 Q124 612 206 678" fill="none" stroke="#3f5d72" stroke-width="2" opacity=".22"/>
+    <circle cx="470" cy="150" r="34" fill="none" stroke="#9c3b2e" stroke-width="1.4" opacity=".3"/>
+  </symbol>
+  <symbol id="bg-clouds" viewBox="0 0 600 900">
+    <g fill="none" stroke="#c9bd9c" stroke-width="3" stroke-linecap="round" opacity=".5">
+      <path d="M-20 130 C90 100 150 165 270 135 C360 112 420 150 540 122"/>
+      <path d="M40 250 C140 225 200 280 330 252 C420 233 470 268 620 240"/>
+      <path d="M-10 690 C110 662 170 720 300 690 C400 667 460 705 600 678"/>
+      <path d="M60 805 C160 783 220 831 350 805 C440 787 500 820 630 797"/>
+    </g>
+    <g fill="#d8cdb0" opacity=".26">
+      <ellipse cx="430" cy="62" rx="120" ry="28"/>
+      <ellipse cx="170" cy="470" rx="140" ry="32"/>
+    </g>
+  </symbol>
+  <symbol id="bg-bamboo" viewBox="0 0 600 900">
+    <g fill="none" stroke="#9aaa7d" stroke-linecap="round" opacity=".5">
+      <path d="M62 905 C54 640 52 360 70 70" stroke-width="8"/>
+      <path d="M126 905 C136 680 138 430 120 200" stroke-width="5.5"/>
+    </g>
+    <g stroke="#7d8f63" stroke-width="3" opacity=".5">
+      <path d="M48 740 h28 M51 560 h28 M56 380 h27 M62 210 h25"/>
+      <path d="M110 700 h24 M115 500 h24 M119 320 h22"/>
+    </g>
+    <g fill="#8a9a6f" opacity=".4">
+      <path d="M70 90 Q124 52 188 78 Q130 110 70 90 Z"/>
+      <path d="M70 104 Q120 122 158 184 Q104 168 70 104 Z"/>
+      <path d="M120 214 Q170 182 226 206 Q168 234 120 214 Z"/>
+      <path d="M120 228 Q160 246 190 300 Q140 286 120 228 Z"/>
+    </g>
+  </symbol>
+  <symbol id="bg-pine" viewBox="0 0 600 900">
+    <g fill="none" stroke="#6f7d5a" stroke-linecap="round" opacity=".5">
+      <path d="M612 36 C520 56 438 110 356 206" stroke-width="5"/>
+      <path d="M472 92 C490 52 482 22 448 4" stroke-width="3.5"/>
+      <path d="M414 144 C432 104 422 70 392 50" stroke-width="3.5"/>
+      <path d="M356 206 C350 172 360 142 388 122" stroke-width="3"/>
+    </g>
+    <g stroke="#7c8a64" stroke-width="1.5" opacity=".48" stroke-linecap="round">
+      <path d="M462 26 l-16 -9 M462 26 l-17 0 M462 26 l-16 9 M462 26 l-9 -16 M462 26 l-9 16 M462 26 l1 -18 M462 26 l1 18"/>
+      <path d="M404 78 l-16 -9 M404 78 l-17 0 M404 78 l-16 9 M404 78 l-9 -16 M404 78 l-9 16 M404 78 l1 -18 M404 78 l1 18"/>
+      <path d="M366 178 l-16 -9 M366 178 l-17 0 M366 178 l-16 9 M366 178 l-9 -16 M366 178 l-9 16 M366 178 l1 -18 M366 178 l1 18"/>
+      <path d="M520 56 l-15 -10 M520 56 l-16 -3 M520 56 l-12 12 M520 56 l-4 -17 M520 56 l5 15"/>
+    </g>
+  </symbol>
+</defs>
+</svg>
+
+<!-- ===================== HALF-TITLE (p. i) ===================== -->
+<div class="page recto"><div class="page-num-screen">i · half-title</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-bamboo"/></svg>
+  <div class="half-title">
+    <div class="ornament">☰ ☱ ☲ ☳</div>
+    <svg class="enso" viewBox="0 0 200 200" aria-hidden="true">
+      <path d="M141 44 C170 60 182 96 174 128 C165 163 128 182 92 178 C52 173 24 140 27 100 C30 60 66 31 108 33"
+            fill="none" stroke="#9c3b2e" stroke-width="9" stroke-linecap="round"/>
+      <path d="M108 33 C120 34 132 38 141 44" fill="none" stroke="#9c3b2e" stroke-width="3.5" stroke-linecap="round" opacity=".5"/>
+    </svg>
+    <div class="ttl">Wind <span class="amp">&amp;</span> Water</div>
+    <div class="ornament">☴ ☵ ☶ ☷</div>
+  </div>
+</div>
+
+<!-- ===================== BLANK (p. ii) ===================== -->
+<div class="page verso"><div class="page-num-screen">ii</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-mountains"/></svg></div>
+
+<!-- ===================== TITLE PAGE (p. iii) ===================== -->
+<div class="page recto"><div class="page-num-screen">iii · title</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-mountains"/></svg>
+  <div class="title-page">
+    <div class="stamp-wrap">
+      <div class="stamp">風水</div>
+    </div>
+    <div>
+      <div class="by">A Complete Compendium of</div>
+      <div class="big">Wind <span class="it">&amp;</span> Water</div>
+      <div class="sub">Principles, Practice, and the Soulful Art of Living in Balance — A Modern Handbook of Classical Feng Shui</div>
+    </div>
+    <div class="rule"></div>
+    <div>
+      <div class="by">written by</div>
+      <div class="author">Rayan R. Sleem</div>
+    </div>
+    <div class="imprint">Cinnabar Press · 2026</div>
+  </div>
+</div>
+
+<!-- ===================== COPYRIGHT (p. iv) ===================== -->
+<div class="page verso"><div class="page-num-screen">iv · copyright</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-clouds"/></svg>
+  <div class="copy-page">
+    <div class="block"><strong>Wind &amp; Water: The Complete Feng Shui Compendium</strong><br/>Principles, Practice, and the Soulful Art of Living in Balance</div>
+    <div class="block">First edition published 2026 by Cinnabar Press, an imprint of the House of Wind &amp; Water.</div>
+    <div class="block">Copyright © 2026 by Rayan R. Sleem. All rights reserved. No part of this publication may be reproduced, stored in a retrieval system, or transmitted in any form or by any means — electronic, mechanical, photocopying, recording, or otherwise — without the prior written permission of the publisher, except in the case of brief quotations embodied in critical articles or reviews.</div>
+    <div class="block">The moral right of the author has been asserted in accordance with the Copyright, Designs and Patents Act 1988.</div>
+    <div class="block iso">ISBN 978-1-959402-08-7 (paperback)<br/>ISBN 978-1-959402-09-4 (ebook)<br/>Library of Congress Control Number: 2026936412<br/>British Library Cataloguing-in-Publication Data: a catalogue record is available.</div>
+    <div class="block">Cover and interior design by the Cinnabar Studio. Trigrams and bagua illustrations by the author. Set in Cormorant Garamond, Lora, and Noto Serif SC.</div>
+    <div class="block"><strong>Disclaimer.</strong> This book is intended for general informational and educational purposes. The author and publisher have made every reasonable effort to ensure accuracy and disclaim any liability arising from the use or misuse of the material herein. Feng Shui is a contemplative practice, not a substitute for professional medical, legal, financial, or psychological advice.</div>
+    <div class="block">Printed on acid-free paper conforming to <span class="iso">ANSI/NISO Z39.48-1992 (R2009)</span> · FSC® C014383 mixed-source paper · printed and bound in the United States of America.</div>
+    <div class="block iso">10 · 9 · 8 · 7 · 6 · 5 · 4 · 3 · 2 · 1</div>
+  </div>
+</div>
+
+<!-- ===================== DEDICATION (p. v) ===================== -->
+<div class="page recto"><div class="page-num-screen">v · dedication</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-bamboo"/></svg>
+  <div class="dedication">
+    <div>
+      <p>For my grandmother,<br/>who taught me that a house, like a heart,<br/>must be allowed to breathe.</p>
+      <div class="orn">☰ ☱ ☲</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== EPIGRAPH (p. vi) ===================== -->
+<div class="page verso"><div class="page-num-screen">vi · epigraph</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-pine"/></svg>
+  <div class="epigraph">
+    <div class="quote">&ldquo;The space we inhabit is not a container; it is a participant. To arrange a room is to arrange a life.&rdquo;</div>
+    <div class="attr">— Classical Chinese aphorism, c. 4th c. BCE</div>
+    <div style="height:24px;"></div>
+    <div class="quote">&ldquo;Feng Shui is not decoration. It is the practice of listening to a place until the place tells you how it wishes to be lived in.&rdquo;</div>
+    <div class="attr">— from the author&rsquo;s notebooks</div>
+  </div>
+</div>
+
+<!-- ===================== CONTENTS (p. vii) ===================== -->
+<div class="page recto"><div class="page-num-screen">vii · contents</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-pine"/></svg>
+  <div class="toc-page">
+    <h1>Contents</h1>
+    <p class="lead">A book in four parts, eighteen chapters, and a small library of practical appendices.</p>
+
+    <div class="part"><span class="roman">i</span> Front Matter</div>
+    <div class="row front"><span></span><span class="ch">Preface — A Note from the Author</span><span class="pg">xv</span></div>
+    <div class="row front"><span></span><span class="ch">How to Read This Book</span><span class="pg">xix</span></div>
+
+    <div class="part"><span class="roman">ii</span> Part One · The Foundations</div>
+    <div class="row"><span class="ch">1</span><span class="ch">The Origins of Wind and Water</span><span class="pg">3</span></div>
+    <div class="row"><span class="ch">2</span><span class="ch">Qi — The Breath of the World</span><span class="pg">17</span></div>
+    <div class="row"><span class="ch">3</span><span class="ch">Yin &amp; Yang — The Two That Are One</span><span class="pg">29</span></div>
+    <div class="row"><span class="ch">4</span><span class="ch">The Five Elements &amp; Their Cycles</span><span class="pg">39</span></div>
+    <div class="row"><span class="ch">5</span><span class="ch">The Bagua — A Map of the Eight Directions</span><span class="pg">55</span></div>
+
+    <div class="part"><span class="roman">iii</span> Part Two · The Personal Compass</div>
+    <div class="row"><span class="ch">6</span><span class="ch">Calculating Your Kua Number</span><span class="pg">73</span></div>
+    <div class="row"><span class="ch">7</span><span class="ch">The East &amp; West Groups</span><span class="pg">85</span></div>
+    <div class="row"><span class="ch">8</span><span class="ch">Auspicious &amp; Inauspicious Directions</span><span class="pg">95</span></div>
+
+    <div class="part"><span class="roman">iv</span> Part Three · The Home, Room by Room</div>
+    <div class="row"><span class="ch">9</span><span class="ch">The Threshold — Front Door &amp; Entry</span><span class="pg">109</span></div>
+    <div class="row"><span class="ch">10</span><span class="ch">The Living Room &amp; Social Spaces</span><span class="pg">123</span></div>
+    <div class="row"><span class="ch">11</span><span class="ch">The Kitchen — Hearth of the Home</span><span class="pg">137</span></div>
+    <div class="row"><span class="ch">12</span><span class="ch">The Bedroom &amp; the Practice of Rest</span><span class="pg">151</span></div>
+    <div class="row"><span class="ch">13</span><span class="ch">The Bathroom &amp; the Drain Problem</span><span class="pg">169</span></div>
+    <div class="row"><span class="ch">14</span><span class="ch">The Office, the Garden, the Threshold Beyond</span><span class="pg">181</span></div>
+
+    <div class="part"><span class="roman">v</span> Part Four · Applied Practice</div>
+    <div class="row"><span class="ch">15</span><span class="ch">Color, Material, and the Senses</span><span class="pg">199</span></div>
+    <div class="row"><span class="ch">16</span><span class="ch">The Classical Cures — Mirrors, Plants, Crystals</span><span class="pg">213</span></div>
+    <div class="row"><span class="ch">17</span><span class="ch">Decluttering as a Ritual Practice</span><span class="pg">227</span></div>
+    <div class="row"><span class="ch">18</span><span class="ch">The Soulful Home — Intention, Season, Ceremony</span><span class="pg">241</span></div>
+
+    <div class="part"><span class="roman">vi</span> Back Matter</div>
+    <div class="row front"><span></span><span class="ch">Glossary of Terms</span><span class="pg">259</span></div>
+    <div class="row front"><span></span><span class="ch">Quick-Reference Tables</span><span class="pg">269</span></div>
+    <div class="row front"><span></span><span class="ch">Index</span><span class="pg">275</span></div>
+    <div class="row front"><span></span><span class="ch">About the Author · Colophon</span><span class="pg">283</span></div>
+  </div>
+</div>
+
+<!-- ===================== PART ONE OPENER (p. 1) ===================== -->
+<div class="page recto"><div class="page-num-screen">1 · part opener</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-pine"/></svg>
+  <div class="part-opener">
+    <div class="num">Part One</div>
+    <div class="trig">☰ ☱ ☲</div>
+    <div class="ttl">The <span class="it">Foundations</span></div>
+    <div class="rule"></div>
+    <div class="gloss">Before we arrange a room, we must learn the grammar of the unseen forces that flow through it.</div>
+    <div class="chinese">基</div>
+  </div>
+  <svg class="art-bg" viewBox="0 0 600 220" preserveAspectRatio="none" style="bottom:0;height:1.9in;" aria-hidden="true">
+    <path d="M0 220 L0 150 Q120 60 250 130 Q350 185 460 80 Q530 15 600 95 L600 220 Z" fill="#e3d8bf" opacity=".75"/>
+    <path d="M0 220 L0 175 Q160 105 320 165 Q470 220 600 140 L600 220 Z" fill="#cdbf9c" opacity=".7"/>
+    <path d="M0 220 L0 200 Q200 165 400 200 Q520 220 600 195 L600 220 Z" fill="#b6a47c" opacity=".6"/>
+  </svg>
+</div>
+
+<!-- ===================== BLANK (p. 2) ===================== -->
+<div class="page verso"><div class="page-num-screen">2 · blank</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-mountains"/></svg></div>
+
+<!-- ===================== CHAPTER 1 OPENER (p. 3) ===================== -->
+<div class="page recto"><div class="page-num-screen">3 · ch.1 opener</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-mountains"/></svg>
+  <div class="chapter-opener">
+    <div class="top">
+      <div class="meta"><span>Chapter</span><span class="roman">i</span><span class="rule"></span><span>page 3</span></div>
+      <div class="glyph">☰</div>
+      <div class="ch-ttl">The Origins of<br/><span class="it">Wind and Water</span></div>
+      <div class="ch-sub">Three thousand years of paying attention — and what the ancient surveyors of the Yellow River were really looking for.</div>
+    </div>
+
+    <div class="figure">
+      <svg viewBox="0 0 360 170" width="360" height="170" aria-label="Ink-wash landscape of a river valley between mountains">
+        <rect x="1" y="1" width="358" height="168" fill="none" stroke="#b8945f" stroke-width="1"/>
+        <rect x="7" y="7" width="346" height="156" fill="#f1e9d6"/>
+        <circle cx="278" cy="48" r="20" fill="none" stroke="#9c3b2e" stroke-width="1.4" opacity=".7"/>
+        <path d="M7 120 Q70 55 130 105 Q165 132 200 92 L200 163 L7 163 Z" fill="#cdbf9c" opacity=".8"/>
+        <path d="M120 130 Q190 70 250 110 Q300 142 353 96 L353 163 L120 163 Z" fill="#b6a47c" opacity=".75"/>
+        <path d="M7 163 Q110 138 200 150 Q290 161 353 142 L353 163 Z" fill="#8a7c66" opacity=".55"/>
+        <path d="M40 163 Q120 132 200 150 Q280 167 330 140" fill="none" stroke="#3f5d72" stroke-width="2.4" opacity=".7"/>
+        <path d="M55 158 Q130 134 200 148" fill="none" stroke="#f1e9d6" stroke-width="1" opacity=".8"/>
+        <path d="M150 120 q-3 -14 4 -24 q7 10 4 24 z" fill="#6f8f5f" opacity=".8"/>
+        <path d="M168 124 q-3 -16 4 -27 q7 11 4 27 z" fill="#6f8f5f" opacity=".7"/>
+      </svg>
+      <div class="cap">Fig. 1 · <em>The valley the surveyors read — mountain behind, water before.</em></div>
+    </div>
+
+    <div class="body-block">
+      <p class="lead first">The two characters that name our practice — <em>fēng</em> (風) and <em>shuǐ</em> (水) — translate, with disarming plainness, as <em>wind</em> and <em>water</em>. They are the two elements an ancient surveyor could not control and could not ignore: the breath that moves across a valley, the current that decides where a village can take root. To this day, every principle in this book is a refinement of one essential question those surveyors first asked, four thousand years ago: <em>how does life-force move through this place, and how can we live in friendship with it?</em></p>
+    </div>
+  </div>
+  <div class="folio"><span class="num">3</span></div>
+</div>
+
+<!-- ===================== CH.1 BODY (p. 4) ===================== -->
+<div class="page verso"><div class="page-num-screen">4 · ch.1</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-clouds"/></svg>
+  <div class="run-head"><span>Wind &amp; Water</span><span>Chapter One</span></div>
+  <div class="body-content" style="padding-top:.5in;">
+    <h2 class="sub">A Practice Older Than Books</h2>
+    <p class="dropcap first">Long before the discipline acquired a name, Chinese farmers had already learned that some hillsides grew better grain than others, that some bends in a river attracted settlements while others bred plague. The practice we now call <em>Feng Shui</em> began as agricultural common sense — the patient observation of how landscape, climate, and orientation conspired to bless or curse a piece of ground.</p>
+    <p>By the time of the Han Dynasty, that common sense had been refined into a literate discipline. The surveyor — the <em>kanyu jia</em>, the one who reads &ldquo;heaven and earth&rdquo; — carried a magnetic compass, a set of bronze rulers, and a thick book of correspondences. He would walk a parcel of land for days before declaring it auspicious. He was not a mystic. He was a kind of meteorologist of the spirit.</p>
+
+    <h2 class="sub">Two Great Schools</h2>
+    <p>From the classical period emerged two main approaches that still organize the field today. The <em>Form School</em>, sometimes called <em>Luan Tou</em>, reads the visible landscape: the curve of a mountain behind a house, the shape of a road approaching the door, the way water gathers or rushes past. Its working metaphor is the <em>green dragon</em> to the left and the <em>white tiger</em> to the right of any seated position — the embracing arms of the land.</p>
+
+    <div class="figure">
+      <svg viewBox="0 0 200 200" width="170" height="170" aria-label="The luopan, a concentric-ring Feng Shui compass">
+        <circle cx="100" cy="100" r="92" fill="#1c1813"/>
+        <circle cx="100" cy="100" r="92" fill="none" stroke="#b8945f" stroke-width="1.5"/>
+        <circle cx="100" cy="100" r="74" fill="none" stroke="#b8945f" stroke-width=".8" opacity=".8"/>
+        <circle cx="100" cy="100" r="56" fill="none" stroke="#b8945f" stroke-width=".8" opacity=".8"/>
+        <circle cx="100" cy="100" r="38" fill="none" stroke="#b8945f" stroke-width=".8" opacity=".8"/>
+        <g stroke="#b8945f" stroke-width=".6" opacity=".7">
+          <line x1="100" y1="8" x2="100" y2="192"/>
+          <line x1="8" y1="100" x2="192" y2="100"/>
+          <line x1="35" y1="35" x2="165" y2="165"/>
+          <line x1="165" y1="35" x2="35" y2="165"/>
+        </g>
+        <circle cx="100" cy="100" r="20" fill="#9c3b2e"/>
+        <path d="M100 84 L106 100 L100 116 L94 100 Z" fill="#f1e9d6"/>
+        <text x="100" y="22" font-family="Noto Serif SC, serif" font-size="9" fill="#f1e9d6" text-anchor="middle">南</text>
+        <text x="100" y="186" font-family="Noto Serif SC, serif" font-size="9" fill="#f1e9d6" text-anchor="middle">北</text>
+      </svg>
+      <div class="cap">Fig. 2 · <em>The luopan — the surveyor&rsquo;s compass of concentric rings.</em></div>
+    </div>
+
+    <p>The <em>Compass School</em>, or <em>Li Qi</em>, works with the unseen: the eight directions, the trigrams of the I Ching, the cycles of time. Its principal instrument is the <em>luopan</em>, a black-lacquered compass crowded with concentric rings of Chinese characters. Practitioners of compass Feng Shui calculate where to place a door the way an astronomer calculates an eclipse.</p>
+    <p>This book teaches both. The Form School helps you choose a house. The Compass School helps you live in it.</p>
+
+    <blockquote class="pull">&ldquo;The mountain holds you. The water finds you. Between the two, you build a life.&rdquo;</blockquote>
+
+    <h2 class="sub">Why It Survived</h2>
+    <p>Feng Shui has outlasted empires, weathered the suspicion of communists and the gentle ridicule of moderns, and crossed every ocean. It survived because, at root, it is not a system of superstition. It is a system of <em>attention</em>. To practice Feng Shui is to notice things most people do not notice: the imperceptible draft under a badly-hung door, the slight oppression of a beam over the bed, the way a cluttered hallway slows you down before you have even put on your shoes. The practice rewards observation. Observation rewards the practitioner. That is the whole of it.</p>
+  </div>
+  <div class="folio"><span class="num">4</span></div>
+</div>
+
+<!-- ===================== CHAPTER 2 OPENER (p. 17) ===================== -->
+<div class="page recto"><div class="page-num-screen">17 · ch.2 opener</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-clouds"/></svg>
+  <div class="chapter-opener">
+    <div class="top">
+      <div class="meta"><span>Chapter</span><span class="roman">ii</span><span class="rule"></span><span>page 17</span></div>
+      <div class="glyph">☵</div>
+      <div class="ch-ttl">Qi — The Breath<br/><span class="it">of the World</span></div>
+      <div class="ch-sub">On the substance that is everywhere and never quite anywhere — and how to recognize its movement through a room.</div>
+    </div>
+
+    <div class="figure">
+      <svg viewBox="0 0 360 130" width="360" height="130" aria-label="Flowing line-art showing qi drifting through a doorway">
+        <rect x="20" y="14" width="58" height="102" fill="none" stroke="#8a7c66" stroke-width="1.4"/>
+        <rect x="20" y="14" width="58" height="14" fill="#cdbf9c" opacity=".7"/>
+        <g fill="none" stroke="#3f5d72" stroke-width="1.6" stroke-linecap="round">
+          <path d="M78 40 C140 30 150 70 210 56 C270 42 280 86 344 70" opacity=".85"/>
+          <path d="M78 62 C150 58 158 96 224 80 C284 66 300 100 344 92" opacity=".65"/>
+          <path d="M78 84 C150 86 150 50 216 66 C286 82 296 56 344 50" opacity=".5"/>
+        </g>
+        <g fill="#9c3b2e">
+          <circle cx="344" cy="70" r="3"/><circle cx="344" cy="92" r="3"/><circle cx="344" cy="50" r="3"/>
+        </g>
+      </svg>
+      <div class="cap">Fig. 3 · <em>Qi enters at the door and drifts in soft, unhurried curves.</em></div>
+    </div>
+
+    <div class="body-block">
+      <p class="lead first">If the practice of Feng Shui has a single subject of study, it is <em>qi</em>. Qi is the energy that animates everything from a falling leaf to a financial decision. It is not mystical in the sense of being remote; it is mystical in the sense of being too close — too constant — for casual notice. The whole craft of Feng Shui can be described as the cultivation of the senses required to feel qi at work and the discipline required to invite it into the rooms where you live.</p>
+    </div>
+  </div>
+  <div class="folio"><span class="num">17</span></div>
+</div>
+
+<!-- ===================== CH.2 BODY (p. 18) ===================== -->
+<div class="page verso"><div class="page-num-screen">18 · ch.2</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-clouds"/></svg>
+  <div class="run-head"><span>Wind &amp; Water</span><span>Chapter Two</span></div>
+  <div class="body-content" style="padding-top:.5in;">
+    <h2 class="sub">What Qi Is, and What It Isn&rsquo;t</h2>
+    <p class="dropcap first">Qi is not a fluid. It is not a substance that can be poured. It is closer in nature to a tendency — the inclination of a place toward life or against it. A garden in full bloom has lively qi. A hospital corridor at three in the morning has thinned qi. A landlord&rsquo;s storage unit, untouched for seven years, has stagnant qi. None of these descriptions requires belief. They require only the willingness to notice what is already there.</p>
+
+    <h2 class="sub">Three States of Qi</h2>
+    <p>The classical literature distinguishes three principal modes in which qi can be found.</p>
+
+    <ul class="bullet">
+      <li><strong>Sheng qi — the rising breath.</strong> Vital, generative, and abundant. You feel it in a room that has just been cleaned, in a kitchen full of cooking, in a freshly weeded garden.</li>
+      <li><strong>Sha qi — the cutting breath.</strong> Hostile, sharp, often the result of geometry. Long straight corridors, sharp corners pointed at the bed, the edge of a neighbor&rsquo;s roof aimed at your front door.</li>
+      <li><strong>Si qi — the stagnant breath.</strong> Heavy, listless, and slow. Found in cluttered basements, behind furniture that has not been moved in a decade, beneath the bed of someone who is not sleeping well.</li>
+    </ul>
+
+    <p>The work of the practitioner — your work, beginning today — is to encourage <em>sheng qi</em>, deflect <em>sha qi</em>, and disperse <em>si qi</em>. Almost every cure in the second half of this book is a refinement of one of these three movements.</p>
+
+    <div class="sidenote">A useful experiment. Walk into your own home with your shoes still on, as a guest would. Note the first three things your eye lands on, and the first sensation in your chest. That sensation is your honest reading of the qi.</div>
+
+    <h2 class="sub">How Qi Moves</h2>
+    <p>Qi enters a building primarily through the front door — which is why the door receives a chapter of its own (see Chapter Nine). From the door, qi behaves rather like a slow gas: it prefers to drift in soft curves, to linger where it is welcome, to escape where the geometry presses it out. Long unbroken hallways accelerate qi until it has nothing left to give. Cluttered corners trap it. Mirrors redirect it. A round table at the center of a room collects it.</p>
+    <p>What you are arranging, when you arrange furniture, is not really furniture. It is the path the breath of the world will take through your rooms tomorrow morning.</p>
+  </div>
+  <div class="folio"><span class="num">18</span></div>
+</div>
+
+<!-- ===================== CHAPTER 4 OPENER — Five Elements (p. 39) ===================== -->
+<div class="page recto"><div class="page-num-screen">39 · ch.4 opener</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-mountains"/></svg>
+  <div class="chapter-opener">
+    <div class="top">
+      <div class="meta"><span>Chapter</span><span class="roman">iv</span><span class="rule"></span><span>page 39</span></div>
+      <div class="glyph">☲</div>
+      <div class="ch-ttl">The Five Elements<br/><span class="it">&amp; their Cycles</span></div>
+      <div class="ch-sub">Wood, Fire, Earth, Metal, Water — and the two great cycles that govern how they nourish or consume one another.</div>
+    </div>
+
+    <div class="figure">
+      <svg viewBox="0 0 300 300" width="232" height="232" aria-label="The Five Elements cycle: a pentagon of nourishment with an inner star of control">
+        <defs>
+          <marker id="genArrow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+            <path d="M0 0 L6 3 L0 6 Z" fill="#6f8f5f"/>
+          </marker>
+          <marker id="ctlArrow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+            <path d="M0 0 L6 3 L0 6 Z" fill="#9c3b2e"/>
+          </marker>
+        </defs>
+        <!-- generation cycle: pentagon edges -->
+        <g fill="none" stroke="#6f8f5f" stroke-width="2.4" marker-end="url(#genArrow)" opacity=".9">
+          <path d="M163 62 C210 70 236 96 240 132"/>
+          <path d="M234 168 C224 206 198 226 165 233"/>
+          <path d="M188 252 C160 266 128 266 110 252"/>
+          <path d="M70 218 C50 196 46 172 56 148"/>
+          <path d="M66 100 C78 74 98 60 122 58"/>
+        </g>
+        <!-- control cycle: inner star -->
+        <g fill="none" stroke="#9c3b2e" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#ctlArrow)" opacity=".85">
+          <path d="M150 64 L201 211"/>
+          <path d="M209 219 L55 132"/>
+          <path d="M52 124 L237 124"/>
+          <path d="M244 132 L99 219"/>
+          <path d="M91 211 L142 64"/>
+        </g>
+        <!-- nodes -->
+        <g font-family="Cormorant Garamond, serif" text-anchor="middle">
+          <g><circle cx="150" cy="50" r="26" fill="#6f8f5f"/>
+            <text x="150" y="48" font-size="13" fill="#f1e9d6" font-family="Noto Serif SC, serif">木</text>
+            <text x="150" y="61" font-size="8.5" fill="#f1e9d6">Wood</text></g>
+          <g><circle cx="250" cy="121" r="26" fill="#b5483a"/>
+            <text x="250" y="119" font-size="13" fill="#f1e9d6" font-family="Noto Serif SC, serif">火</text>
+            <text x="250" y="132" font-size="8.5" fill="#f1e9d6">Fire</text></g>
+          <g><circle cx="212" cy="240" r="26" fill="#c19a5b"/>
+            <text x="212" y="238" font-size="13" fill="#1c1813" font-family="Noto Serif SC, serif">土</text>
+            <text x="212" y="251" font-size="8.5" fill="#1c1813">Earth</text></g>
+          <g><circle cx="88" cy="240" r="26" fill="#9a9a93"/>
+            <text x="88" y="238" font-size="13" fill="#1c1813" font-family="Noto Serif SC, serif">金</text>
+            <text x="88" y="251" font-size="8.5" fill="#1c1813">Metal</text></g>
+          <g><circle cx="50" cy="121" r="26" fill="#3f5d72"/>
+            <text x="50" y="119" font-size="13" fill="#f1e9d6" font-family="Noto Serif SC, serif">水</text>
+            <text x="50" y="132" font-size="8.5" fill="#f1e9d6">Water</text></g>
+        </g>
+      </svg>
+      <div class="cap">Fig. 4 · <em>Green pentagon — generation. Red star — control.</em></div>
+    </div>
+
+    <div class="body-block">
+      <p class="lead first">The Chinese conception of an element is not the chemical one. The Five Elements are not substances; they are <em>phases</em> — five recognizable modes that energy passes through as it moves around the world. Wood is the phase of beginning. Fire is the phase of full expression. Earth is the phase of settling. Metal is the phase of refinement. Water is the phase of return.</p>
+    </div>
+  </div>
+  <div class="folio"><span class="num">39</span></div>
+</div>
+
+<!-- ===================== CH.4 BODY — Element table (p. 40) ===================== -->
+<div class="page verso"><div class="page-num-screen">40 · ch.4 table</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-bamboo"/></svg>
+  <div class="run-head"><span>Wind &amp; Water</span><span>Chapter Four</span></div>
+  <div class="body-content" style="padding-top:.5in;">
+    <h2 class="sub">The Five at a Glance</h2>
+    <p>Every element carries a season, a direction, a color palette, a shape, a flavor, and a temperament. The table below is the one most practitioners memorize first.</p>
+
+    <table class="elements">
+      <tr><th>Element</th><th>Season</th><th>Direction</th><th>Colors</th><th>Shape</th></tr>
+      <tr><td class="el">Wood 木</td><td>Spring</td><td>East · SE</td><td>Greens, soft teal</td><td>Tall, columnar</td></tr>
+      <tr><td class="el">Fire 火</td><td>Summer</td><td>South</td><td>Reds, oranges, magenta</td><td>Triangular, pointed</td></tr>
+      <tr><td class="el">Earth 土</td><td>Late Summer</td><td>Center · NE · SW</td><td>Ochre, terracotta, beige</td><td>Square, low</td></tr>
+      <tr><td class="el">Metal 金</td><td>Autumn</td><td>West · NW</td><td>White, silver, grey</td><td>Round, domed</td></tr>
+      <tr><td class="el">Water 水</td><td>Winter</td><td>North</td><td>Black, indigo, deep blue</td><td>Wavy, free-form</td></tr>
+    </table>
+
+    <h2 class="sub">The Productive Cycle</h2>
+    <p>The first cycle is one of mutual nourishment. <em>Water feeds Wood, Wood feeds Fire, Fire produces Earth (as ash), Earth bears Metal, Metal condenses Water.</em> When you arrange a room according to the productive cycle, the energies pass smoothly from one to the next, like an exhale: a wooden bowl on an earthen table beside a candle.</p>
+
+    <h2 class="sub">The Destructive Cycle</h2>
+    <p>The second cycle is one of mutual restraint. <em>Wood breaks Earth, Earth dams Water, Water quenches Fire, Fire melts Metal, Metal cuts Wood.</em> The destructive cycle is not a curse; it is a discipline. We use it deliberately to soften an element that is overpowering a room — a fish tank (water) placed thoughtfully near a south-facing fireplace (fire) to keep the room from running hot.</p>
+
+    <div class="diagram">
+      <div class="lbl">Mnemonic · the two cycles</div>
+      <div class="ttl">Generation <em>feeds.</em> Control <em>restrains.</em></div>
+      <div class="desc">Both cycles are at work in every room. The practitioner&rsquo;s skill is recognizing which one a given space is calling for.</div>
+    </div>
+  </div>
+  <div class="folio"><span class="num">40</span></div>
+</div>
+
+<!-- ===================== CHAPTER 5 — BAGUA (p. 55) ===================== -->
+<div class="page recto"><div class="page-num-screen">55 · ch.5 opener</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-clouds"/></svg>
+  <div class="chapter-opener">
+    <div class="top">
+      <div class="meta"><span>Chapter</span><span class="roman">v</span><span class="rule"></span><span>page 55</span></div>
+      <div class="glyph">☷</div>
+      <div class="ch-ttl">The Bagua —<br/>A <span class="it">Map of Eight</span></div>
+      <div class="ch-sub">Eight directions, eight life domains, and the simple octagonal grid you can lay over the floor plan of any room.</div>
+    </div>
+    <div class="body-block">
+      <p class="lead first">If the Five Elements are the grammar of Feng Shui, the Bagua is its alphabet. <em>Ba</em> means eight; <em>gua</em> means trigram. The Bagua is an octagonal arrangement of the eight foundational trigrams of the <em>I Ching</em>, each of which corresponds to a direction, an element, a life area, a family member, a color, and a season. Laid over the floor plan of a room or a house, it becomes the most useful diagnostic tool in the practice.</p>
+    </div>
+  </div>
+  <div class="folio"><span class="num">55</span></div>
+</div>
+
+<!-- ===================== CH.5 BAGUA DIAGRAM (p. 56) ===================== -->
+<div class="page verso"><div class="page-num-screen">56 · bagua diagram</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-mountains"/></svg>
+  <div class="run-head"><span>Wind &amp; Water</span><span>Chapter Five</span></div>
+  <div class="body-content" style="padding-top:.5in;">
+    <h2 class="sub">The Eight Domains</h2>
+    <p>The diagram below shows the standard alignment used throughout this book. To apply it, align the bottom edge (Career) with the wall containing your room&rsquo;s main entrance.</p>
+
+    <svg viewBox="-134 -142 268 284" class="bagua-svg" style="width:100%;height:3.7in;" aria-label="The Bagua — an octagon of eight life domains around a central yin-yang">
+      <text x="0" y="-126" font-family="Cormorant Garamond, serif" font-size="8" fill="#8a7c66" text-anchor="middle" letter-spacing="3">↑ FAR WALL</text>
+      <text x="0" y="134" font-family="Cormorant Garamond, serif" font-size="8" fill="#8a7c66" text-anchor="middle" letter-spacing="3">ENTRY WALL ↓</text>
+      <path d="M103.5 -42.9 L42.9 -103.5 L-42.9 -103.5 L-103.5 -42.9 L-103.5 42.9 L-42.9 103.5 L42.9 103.5 L103.5 42.9 Z" fill="#f7f1e3" stroke="#b8945f" stroke-width="1.2"/>
+      <g stroke="#b8945f" stroke-width=".7" opacity=".85">
+        <line x1="40.7" y1="-16.8" x2="103.5" y2="-42.9"/>
+        <line x1="16.8" y1="-40.7" x2="42.9" y2="-103.5"/>
+        <line x1="-16.8" y1="-40.7" x2="-42.9" y2="-103.5"/>
+        <line x1="-40.7" y1="-16.8" x2="-103.5" y2="-42.9"/>
+        <line x1="-40.7" y1="16.8" x2="-103.5" y2="42.9"/>
+        <line x1="-16.8" y1="40.7" x2="-42.9" y2="103.5"/>
+        <line x1="16.8" y1="40.7" x2="42.9" y2="103.5"/>
+        <line x1="40.7" y1="16.8" x2="103.5" y2="42.9"/>
+      </g>
+      <circle r="44" fill="#efe6d2" stroke="#b8945f" stroke-width=".9"/>
+      <g font-family="Cormorant Garamond, serif" text-anchor="middle">
+        <text x="0" y="-74" font-size="10" font-style="italic" fill="#9c3b2e">Fame</text>
+        <text x="0" y="-63" font-size="6.5" fill="#1c1813">S · ☲</text>
+        <text x="-50" y="-50" font-size="9.5" font-style="italic" fill="#9c3b2e">Wealth</text>
+        <text x="-50" y="-39" font-size="6.5" fill="#1c1813">SE · ☴</text>
+        <text x="-74" y="-2" font-size="9.5" font-style="italic" fill="#9c3b2e">Family</text>
+        <text x="-74" y="9" font-size="6.5" fill="#1c1813">E · ☳</text>
+        <text x="-50" y="46" font-size="8.7" font-style="italic" fill="#9c3b2e">Knowledge</text>
+        <text x="-50" y="57" font-size="6.5" fill="#1c1813">NE · ☶</text>
+        <text x="0" y="62" font-size="10" font-style="italic" fill="#9c3b2e">Career</text>
+        <text x="0" y="73" font-size="6.5" fill="#1c1813">N · ☵</text>
+        <text x="50" y="46" font-size="9.5" font-style="italic" fill="#9c3b2e">Helpful</text>
+        <text x="50" y="57" font-size="6.5" fill="#1c1813">NW · ☰</text>
+        <text x="74" y="-2" font-size="9.5" font-style="italic" fill="#9c3b2e">Children</text>
+        <text x="74" y="9" font-size="6.5" fill="#1c1813">W · ☱</text>
+        <text x="50" y="-50" font-size="9.5" font-style="italic" fill="#9c3b2e">Love</text>
+        <text x="50" y="-39" font-size="6.5" fill="#1c1813">SW · ☷</text>
+      </g>
+      <text x="0" y="-23" font-family="Cormorant Garamond, serif" font-size="8.5" font-style="italic" fill="#1c1813" text-anchor="middle">Health</text>
+      <g transform="translate(0 7)">
+        <path d="M0 -19 A19 19 0 0 1 0 19 A9.5 9.5 0 0 1 0 0 A9.5 9.5 0 0 0 0 -19 Z" fill="#1c1813"/>
+        <path d="M0 19 A19 19 0 0 1 0 -19 A9.5 9.5 0 0 1 0 0 A9.5 9.5 0 0 0 0 19 Z" fill="#f1e9d6"/>
+        <circle cx="0" cy="-9.5" r="3.2" fill="#f1e9d6"/>
+        <circle cx="0" cy="9.5" r="3.2" fill="#1c1813"/>
+        <circle r="19" fill="none" stroke="#b8945f" stroke-width=".8"/>
+      </g>
+      <text x="0" y="33" font-family="Cormorant Garamond, serif" font-size="6.5" fill="#8a7c66" text-anchor="middle">Center</text>
+    </svg>
+
+    <div class="sidenote">In the Western, three-section style taught in this book, the Bagua is always entered from the bottom — from <em>Career</em>, <em>Knowledge</em>, or <em>Helpful People</em> — never from the back.</div>
+  </div>
+  <div class="folio"><span class="num">56</span></div>
+</div>
+
+<!-- ===================== PART TWO OPENER (p. 71) ===================== -->
+<div class="page recto"><div class="page-num-screen">71 · part opener</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-pine"/></svg>
+  <div class="part-opener">
+    <div class="num">Part Two</div>
+    <div class="trig">☴ ☵ ☶</div>
+    <div class="ttl">The <span class="it">Personal Compass</span></div>
+    <div class="rule"></div>
+    <div class="gloss">Every body of every birth year has its own private set of auspicious directions. This is how you find yours.</div>
+    <div class="chinese">人</div>
+  </div>
+  <svg class="art-bg" viewBox="0 0 600 220" preserveAspectRatio="none" style="bottom:0;height:1.9in;" aria-hidden="true">
+    <path d="M0 220 L0 140 Q140 70 280 135 Q400 190 520 95 Q560 65 600 110 L600 220 Z" fill="#e3d8bf" opacity=".75"/>
+    <path d="M0 220 L0 180 Q180 110 360 170 Q480 210 600 150 L600 220 Z" fill="#cdbf9c" opacity=".7"/>
+  </svg>
+</div>
+
+<!-- ===================== CHAPTER 6 — KUA WORKSHEET (p. 73) ===================== -->
+<div class="page verso"><div class="page-num-screen">73 · ch.6 worksheet</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-bamboo"/></svg>
+  <div class="run-head"><span>Wind &amp; Water</span><span>Chapter Six</span></div>
+  <div class="body-content" style="padding-top:.5in;">
+    <div class="meta" style="font-family:var(--display);font-size:10pt;letter-spacing:.26em;color:var(--cinnabar);text-transform:uppercase;margin-bottom:6px;">Chapter <span style="font-style:italic;color:var(--gold-d);">vi</span></div>
+    <h1 style="font-size:34pt;line-height:1;margin:0 0 8px;">Calculating Your <span style="font-style:italic;color:var(--cinnabar);">Kua Number</span></h1>
+    <p class="lead">Your Kua is a single digit between 1 and 9 — derived from your year of birth and your gender — that points you toward four lucky directions and away from four unlucky ones.</p>
+
+    <div class="worksheet">
+      <div class="lbl">Worksheet · Five steps</div>
+      <div class="ttl">Find your Kua number</div>
+      <ol>
+        <li>Write down the year of your birth in lunar terms. (If born in January or early February, see the lunar calendar appendix; you may need to use the previous year.)</li>
+        <li>Take the last two digits of that year. Add them together.</li>
+        <li>If the result is two digits, reduce again to a single digit. <em>Example: 1974 → 7+4 = 11 → 1+1 = 2.</em></li>
+        <li><strong>If male:</strong> subtract that number from 10. <em>(Born in 2000 or later: subtract from 9.)</em></li>
+        <li><strong>If female:</strong> add 5 to that number. Reduce again if needed. <em>(Born in 2000 or later: add 6.)</em></li>
+      </ol>
+    </div>
+
+    <p style="margin-top:12px;">There is one small exception. The number 5 has no Kua of its own — its energy is reassigned. If your calculation lands on 5, your true Kua is <strong>2 if male</strong> and <strong>8 if female</strong>.</p>
+
+    <div class="diagram">
+      <div class="lbl">Result</div>
+      <div class="ttl">Kua 1, 3, 4, 9 → <em>East Group</em><br/>Kua 2, 6, 7, 8 → <em>West Group</em></div>
+      <div class="desc">Your group determines which four directions feed you and which four drain you. The full table follows in Chapter 8.</div>
+    </div>
+  </div>
+  <div class="folio"><span class="num">73</span></div>
+</div>
+
+<!-- ===================== PART THREE OPENER (p. 107) ===================== -->
+<div class="page recto"><div class="page-num-screen">107 · part opener</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-pine"/></svg>
+  <div class="part-opener">
+    <div class="num">Part Three</div>
+    <div class="trig">☳ ☴ ☵</div>
+    <div class="ttl">The Home, <span class="it">Room by Room</span></div>
+    <div class="rule"></div>
+    <div class="gloss">The principles meet the threshold, the hearth, and the bed — the rooms in which a life is actually lived.</div>
+    <div class="chinese">家</div>
+  </div>
+  <svg class="art-bg" viewBox="0 0 600 220" preserveAspectRatio="none" style="bottom:0;height:1.9in;" aria-hidden="true">
+    <path d="M0 220 L0 150 Q150 80 300 140 Q430 190 560 100 L600 120 L600 220 Z" fill="#e3d8bf" opacity=".75"/>
+    <path d="M0 220 L0 185 Q200 120 400 175 Q500 200 600 160 L600 220 Z" fill="#cdbf9c" opacity=".7"/>
+  </svg>
+</div>
+
+<!-- ===================== CHAPTER 12 — BEDROOM OPENER (p. 151) ===================== -->
+<div class="page verso"><div class="page-num-screen">151 · ch.12 opener</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-mountains"/></svg>
+  <div class="chapter-opener">
+    <div class="top">
+      <div class="meta"><span>Chapter</span><span class="roman">xii</span><span class="rule"></span><span>page 151</span></div>
+      <div class="glyph">☷</div>
+      <div class="ch-ttl">The Bedroom<br/>&amp; the <span class="it">Practice of Rest</span></div>
+      <div class="ch-sub">The single most important room in any Feng Shui practice — because it is the room in which you are least defended.</div>
+    </div>
+
+    <div class="figure">
+      <svg viewBox="0 0 300 200" width="280" height="187" aria-label="Room plan showing the commanding position for a bed">
+        <rect x="20" y="20" width="260" height="160" fill="#f1e9d6" stroke="#8a7c66" stroke-width="2"/>
+        <!-- door, bottom-right -->
+        <rect x="214" y="174" width="52" height="12" fill="#f7f1e3"/>
+        <path d="M214 180 A52 52 0 0 1 266 180" fill="none" stroke="#b8945f" stroke-width="1.3" stroke-dasharray="3 3"/>
+        <text x="240" y="196" font-family="Cormorant Garamond, serif" font-size="10" fill="#8a7c66" text-anchor="middle">door</text>
+        <!-- bed, far corner, diagonal from door -->
+        <rect x="40" y="40" width="78" height="64" rx="4" fill="#cdbf9c" stroke="#9c3b2e" stroke-width="1.6"/>
+        <rect x="40" y="40" width="78" height="18" rx="4" fill="#9c3b2e" opacity=".55"/>
+        <text x="79" y="80" font-family="Cormorant Garamond, serif" font-size="11" fill="#1c1813" text-anchor="middle" font-style="italic">bed</text>
+        <!-- solid wall behind headboard -->
+        <line x1="20" y1="20" x2="20" y2="180" stroke="#9c3b2e" stroke-width="4"/>
+        <text x="13" y="105" font-family="Cormorant Garamond, serif" font-size="8" fill="#9c3b2e" text-anchor="middle" transform="rotate(-90 13 105)">solid wall</text>
+        <!-- sightline bed to door -->
+        <line x1="100" y1="86" x2="232" y2="176" stroke="#3f5d72" stroke-width="1.4" stroke-dasharray="5 4"/>
+        <circle cx="100" cy="86" r="3.5" fill="#3f5d72"/>
+        <text x="166" y="124" font-family="Cormorant Garamond, serif" font-size="8.5" fill="#3f5d72" font-style="italic" text-anchor="middle">line of sight</text>
+      </svg>
+      <div class="cap">Fig. 5 · <em>The commanding position — door in view, never in line.</em></div>
+    </div>
+
+    <div class="body-block">
+      <p class="lead first">In every Feng Shui survey I have ever conducted, the bedroom has been the room that, once corrected, produced the most disproportionate change in the life of the person living in it. We spend a third of our lives there. We are unconscious. The room arranges us as much as we arrange it.</p>
+    </div>
+  </div>
+  <div class="folio"><span class="num">151</span></div>
+</div>
+
+<!-- ===================== CH.12 BEDROOM BODY (p. 152) ===================== -->
+<div class="page recto"><div class="page-num-screen">152 · ch.12 body</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-clouds"/></svg>
+  <div class="run-head"><span>Wind &amp; Water</span><span>Chapter Twelve</span></div>
+  <div class="body-content" style="padding-top:.5in;">
+    <h2 class="sub">The Commanding Position</h2>
+    <p class="dropcap first">The single rule that, if you remember nothing else from this chapter, will serve you for a lifetime: <em>place your bed in the commanding position</em>. This means you should be able to see the bedroom door from your bed, without being directly in line with it. Diagonally opposite the door is usually ideal. The wall behind the headboard should be solid — not a window. The bed should not float in the middle of the room.</p>
+    <p>The deeper logic is biological. A body that cannot see the entry to a room remains, all night, on a low simmer of vigilance. Move the bed, and the simmer ends.</p>
+
+    <h2 class="sub">What to Remove</h2>
+    <ul class="bullet">
+      <li><strong>Mirrors facing the bed.</strong> Whatever else you keep, remove these tonight. Mirrors agitate the qi of a sleeping body. If immovable, cover at night.</li>
+      <li><strong>Active electronics.</strong> Televisions, exercise equipment, work laptops. The bedroom is for two activities; nothing on this list is one of them.</li>
+      <li><strong>Storage under the bed.</strong> Particularly anything emotionally charged: old letters, photographs, taxes. The body absorbs what is below it.</li>
+      <li><strong>Sharp corners aimed at the bed.</strong> Bookcases, desks, wardrobe edges. Soften with a plant or reposition.</li>
+    </ul>
+
+    <h2 class="sub">What to Add</h2>
+    <p>A bedroom that has been emptied of distractions should not be left austere; austerity has its own kind of <em>sha qi</em>. Replace what you removed with objects of beauty and stillness: a single artwork above the bed, a pair of matching bedside lamps (the pairing matters — it nourishes partnership), a soft wool rug under bare feet, curtains heavy enough to muffle the morning.</p>
+
+    <blockquote class="pull">A bed is not a piece of furniture. It is a small country in which you are sovereign for eight hours every night. Govern it well.</blockquote>
+  </div>
+  <div class="folio"><span class="num">152</span></div>
+</div>
+
+<!-- ===================== PART FOUR OPENER (p. 197) ===================== -->
+<div class="page recto"><div class="page-num-screen">197 · part opener</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-pine"/></svg>
+  <div class="part-opener">
+    <div class="num">Part Four</div>
+    <div class="trig">☱ ☲ ☳</div>
+    <div class="ttl">Applied <span class="it">Practice</span></div>
+    <div class="rule"></div>
+    <div class="gloss">Foundations laid, compass set, rooms understood — now the everyday work of living begins.</div>
+    <div class="chinese">行</div>
+  </div>
+  <svg class="art-bg" viewBox="0 0 600 220" preserveAspectRatio="none" style="bottom:0;height:1.9in;" aria-hidden="true">
+    <path d="M0 220 L0 130 Q130 55 270 125 Q390 185 510 90 Q555 60 600 105 L600 220 Z" fill="#e3d8bf" opacity=".75"/>
+    <path d="M0 220 L0 175 Q170 100 350 165 Q480 210 600 145 L600 220 Z" fill="#cdbf9c" opacity=".7"/>
+  </svg>
+</div>
+
+<!-- ===================== CH.17 DECLUTTER (p. 227) ===================== -->
+<div class="page verso"><div class="page-num-screen">227 · ch.17 two-col</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-bamboo"/></svg>
+  <div class="chapter-opener" style="padding-top:.1in;">
+    <div class="top">
+      <div class="meta"><span>Chapter</span><span class="roman">xvii</span><span class="rule"></span><span>page 227</span></div>
+      <div class="ch-ttl">Decluttering as<br/><span class="it">a Ritual Practice</span></div>
+      <div class="ch-sub">Why the simple act of removing what you no longer need is the most powerful Feng Shui intervention available to you.</div>
+    </div>
+
+    <div class="figure">
+      <svg viewBox="0 0 340 110" width="320" height="104" aria-label="The three sorting piles: keep, release, and uncertain">
+        <g font-family="Cormorant Garamond, serif" text-anchor="middle">
+          <g><path d="M40 80 L100 80 L92 38 L48 38 Z" fill="#6f8f5f" opacity=".85"/>
+            <ellipse cx="70" cy="38" rx="22" ry="6" fill="#6f8f5f"/>
+            <text x="70" y="100" font-size="11" fill="#1c1813" font-style="italic">Keep</text></g>
+          <g><path d="M140 80 L200 80 L192 38 L148 38 Z" fill="#9c3b2e" opacity=".85"/>
+            <ellipse cx="170" cy="38" rx="22" ry="6" fill="#9c3b2e"/>
+            <text x="170" y="100" font-size="11" fill="#1c1813" font-style="italic">Release</text></g>
+          <g><path d="M240 80 L300 80 L292 38 L248 38 Z" fill="#b8945f" opacity=".85"/>
+            <ellipse cx="270" cy="38" rx="22" ry="6" fill="#b8945f"/>
+            <text x="270" y="100" font-size="11" fill="#1c1813" font-style="italic">Uncertain</text></g>
+          <text x="270" y="22" font-size="8.5" fill="#8a7c66" font-style="italic">— the pile that is the practice</text>
+        </g>
+      </svg>
+      <div class="cap">Fig. 6 · <em>Every object meets one of three baskets.</em></div>
+    </div>
+
+    <div class="body-block">
+      <p class="lead first">Most Feng Shui consultations end the way they begin: with the recommendation to throw things away. Not because the practice is austere, but because nothing else moves stagnant qi as completely as the honest, ruthless, and slightly tearful work of letting go.</p>
+      <div class="two-col" style="margin-top:12px;">
+        <p>The classical Chinese term for clutter is the same as the term for <em>siltation</em> — the slow accumulation of unmoving matter at the bottom of a river that, if left, will eventually divert the river entirely. A home accumulates silt in exactly the same way. The closet that never closes properly. The mail tray that has not been emptied since spring. The drawer in the kitchen.</p>
+        <p>The work begins with a single ritual, performed in any room of your choice. Find one drawer. Remove every item. Place each item in one of three piles: <em>keep</em>, <em>release</em>, <em>uncertain</em>. The third pile is the practice; the first two are easy. Sit with the uncertain pile for at least one minute per object, and ask: <em>does this serve the person I am now, or the person I was?</em></p>
+        <p>Most objects, given that question, will answer for themselves. The few that remain genuinely uncertain belong, for the moment, in storage. Return to them in one month. They will, almost without exception, have answered by then.</p>
+      </div>
+    </div>
+  </div>
+  <div class="folio"><span class="num">227</span></div>
+</div>
+
+<!-- ===================== GLOSSARY (p. 259) ===================== -->
+<div class="page recto"><div class="page-num-screen">259 · glossary</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-bamboo"/></svg>
+  <div class="run-head"><span>Wind &amp; Water</span><span>Glossary</span></div>
+  <div class="body-content" style="padding-top:.5in;">
+    <h1 style="font-size:34pt;margin:0 0 6px;">Glossary <span style="font-style:italic;color:var(--cinnabar);">of Terms</span></h1>
+    <p class="lead">A working vocabulary for the practitioner. Pinyin transliteration in italic; Chinese characters where useful.</p>
+
+    <div class="gloss-list">
+      <div class="entry"><div class="term">Bagua<small>八卦</small></div><div class="def">The octagonal map of the eight trigrams; the principal diagnostic tool of Feng Shui, applied to homes, rooms, and individual surfaces.</div></div>
+      <div class="entry"><div class="term">Chi · Qi<small>氣</small></div><div class="def">The vital life-force that animates and moves through all phenomena; the principal subject of Feng Shui practice.</div></div>
+      <div class="entry"><div class="term">Form School<small>巒頭</small></div><div class="def">The classical tradition that reads the visible landscape — mountains, water, roads — to assess auspiciousness.</div></div>
+      <div class="entry"><div class="term">Kua Number<small>卦數</small></div><div class="def">A single digit derived from year of birth and gender, used to determine personal auspicious directions.</div></div>
+      <div class="entry"><div class="term">Luopan<small>羅盤</small></div><div class="def">The traditional Feng Shui compass, used in the Compass School tradition to take precise directional readings.</div></div>
+      <div class="entry"><div class="term">Sha Qi<small>煞氣</small></div><div class="def">Hostile or cutting energy, often produced by sharp angles, long corridors, or arrow-like geometries pointed at a dwelling.</div></div>
+      <div class="entry"><div class="term">Sheng Qi<small>生氣</small></div><div class="def">Vital, rising, generative energy; the energy a well-arranged room actively cultivates.</div></div>
+      <div class="entry"><div class="term">Si Qi<small>死氣</small></div><div class="def">Stagnant, lifeless energy; the energy of clutter, dust, and abandonment. Dispersed by movement, light, and air.</div></div>
+      <div class="entry"><div class="term">Yin · Yang<small>陰 · 陽</small></div><div class="def">The two complementary polarities — receptive and active, dark and light, still and moving — whose balance underlies all Feng Shui adjustment.</div></div>
+    </div>
+  </div>
+  <div class="folio"><span class="num">259</span></div>
+</div>
+
+<!-- ===================== INDEX (p. 275) ===================== -->
+<div class="page verso"><div class="page-num-screen">275 · index</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-pine"/></svg>
+  <div class="run-head"><span>Wind &amp; Water</span><span>Index</span></div>
+  <div class="body-content" style="padding-top:.5in;">
+    <h1 style="font-size:34pt;margin:0 0 10px;">Index</h1>
+    <div class="index-cols">
+      <div class="letter">A</div>
+      <div class="ix"><span class="term">Animals, celestial</span><span class="pg">12, 14, 22</span></div>
+      <div class="ix"><span class="term">Apartments, small</span><span class="pg">119, 135, 211</span></div>
+      <div class="ix"><span class="term">Auspicious directions</span><span class="pg">85, 95, 99–104</span></div>
+
+      <div class="letter">B</div>
+      <div class="ix"><span class="term">Bagua, application of</span><span class="pg">55–69, 110, 152</span></div>
+      <div class="ix"><span class="term">Bagua, three-section</span><span class="pg">57</span></div>
+      <div class="ix"><span class="term">Bathroom</span><span class="pg">169–179</span></div>
+      <div class="ix"><span class="term">Beams, overhead</span><span class="pg">154, 217</span></div>
+      <div class="ix"><span class="term">Bedroom, commanding position</span><span class="pg">152</span></div>
+
+      <div class="letter">C</div>
+      <div class="ix"><span class="term">Career, area of</span><span class="pg">58, 62</span></div>
+      <div class="ix"><span class="term">Chi (Qi)</span><span class="pg">17–28</span></div>
+      <div class="ix"><span class="term">Children&rsquo;s rooms</span><span class="pg">189–193</span></div>
+      <div class="ix"><span class="term">Clutter, ritual removal of</span><span class="pg">227–239</span></div>
+      <div class="ix"><span class="term">Color, by direction</span><span class="pg">199–212</span></div>
+      <div class="ix"><span class="term">Compass School</span><span class="pg">5, 95</span></div>
+      <div class="ix"><span class="term">Cul-de-sac, houses in</span><span class="pg">117</span></div>
+
+      <div class="letter">D</div>
+      <div class="ix"><span class="term">Doors, front</span><span class="pg">109–122</span></div>
+      <div class="ix"><span class="term">Doors, back</span><span class="pg">113</span></div>
+
+      <div class="letter">E</div>
+      <div class="ix"><span class="term">Earth element</span><span class="pg">40, 42, 47</span></div>
+      <div class="ix"><span class="term">East Group</span><span class="pg">85–94</span></div>
+      <div class="ix"><span class="term">Eight Mansions</span><span class="pg">96</span></div>
+      <div class="ix"><span class="term">Elements, productive cycle</span><span class="pg">41</span></div>
+      <div class="ix"><span class="term">Elements, destructive cycle</span><span class="pg">42</span></div>
+
+      <div class="letter">F</div>
+      <div class="ix"><span class="term">Fame, area of</span><span class="pg">59</span></div>
+      <div class="ix"><span class="term">Fire element</span><span class="pg">40, 44, 48</span></div>
+      <div class="ix"><span class="term">Form School</span><span class="pg">5, 109</span></div>
+
+      <div class="letter">K</div>
+      <div class="ix"><span class="term">Kitchen, stove placement</span><span class="pg">137–148</span></div>
+      <div class="ix"><span class="term">Kua number, calculation</span><span class="pg">73–84</span></div>
+
+      <div class="letter">M</div>
+      <div class="ix"><span class="term">Metal element</span><span class="pg">40, 45, 49</span></div>
+      <div class="ix"><span class="term">Mirrors, placement of</span><span class="pg">213–219</span></div>
+
+      <div class="letter">P</div>
+      <div class="ix"><span class="term">Plants, as cures</span><span class="pg">220–224</span></div>
+
+      <div class="letter">S</div>
+      <div class="ix"><span class="term">Sha qi</span><span class="pg">19, 113, 154</span></div>
+      <div class="ix"><span class="term">Sheng qi</span><span class="pg">19, 144</span></div>
+
+      <div class="letter">W</div>
+      <div class="ix"><span class="term">Water element</span><span class="pg">40, 46, 50</span></div>
+      <div class="ix"><span class="term">Wealth, area of</span><span class="pg">58, 144</span></div>
+      <div class="ix"><span class="term">West Group</span><span class="pg">85–94</span></div>
+      <div class="ix"><span class="term">Wood element</span><span class="pg">40, 43, 46</span></div>
+
+      <div class="letter">Y</div>
+      <div class="ix"><span class="term">Yin &amp; Yang</span><span class="pg">29–38</span></div>
+    </div>
+  </div>
+  <div class="folio"><span class="num">275</span></div>
+</div>
+
+<!-- ===================== ABOUT AUTHOR (p. 283) ===================== -->
+<div class="page recto"><div class="page-num-screen">283 · about author</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-mountains"/></svg>
+  <div class="run-head"><span>Wind &amp; Water</span><span>About the Author</span></div>
+  <div class="body-content author-page" style="padding-top:.5in;">
+    <div class="portrait">
+      <svg viewBox="0 0 120 120" width="118" height="118" aria-label="Author medallion">
+        <circle cx="60" cy="60" r="57" fill="#1c1813"/>
+        <circle cx="60" cy="60" r="57" fill="none" stroke="#b8945f" stroke-width="1.5"/>
+        <circle cx="60" cy="60" r="47" fill="none" stroke="#b8945f" stroke-width=".7" opacity=".7"/>
+        <path d="M60 24 A36 36 0 0 1 60 96 A18 18 0 0 1 60 60 A18 18 0 0 0 60 24 Z" fill="#f1e9d6"/>
+        <path d="M60 96 A36 36 0 0 1 60 24 A18 18 0 0 1 60 60 A18 18 0 0 0 60 96 Z" fill="#9c3b2e"/>
+        <circle cx="60" cy="42" r="5" fill="#9c3b2e"/>
+        <circle cx="60" cy="78" r="5" fill="#f1e9d6"/>
+        <text x="60" y="116" font-family="Noto Serif SC, serif" font-size="9" fill="#b8945f" text-anchor="middle">風水</text>
+      </svg>
+    </div>
+    <div>
+      <h1 style="font-size:28pt;margin:0 0 12px;text-align:center;">About the <span style="font-style:italic;color:var(--cinnabar);">Author</span></h1>
+      <p style="text-align:center;text-indent:0;font-style:italic;color:var(--cinnabar-d);font-family:var(--display);font-size:14pt;margin-bottom:16px;">Rayan R. Sleem</p>
+      <p>Rayan R. Sleem is a fourth-generation Feng Shui practitioner trained in both the Form and Compass schools at the Mastery Academy of Chinese Metaphysics. Sleem has consulted on over two thousand homes and businesses across three continents, from a single-room studio in Brooklyn to the corporate headquarters of a Fortune 500 company in Singapore.</p>
+      <p>This work blends the strict classical lineage of that training with a more contemporary sensitivity to the soulful, lived-in nature of modern homes. Sleem lectures regularly at the Mastery Academy, contributes to the <em>Journal of Eastern Geomancy</em>, and keeps a small consulting practice from a home in the foothills outside Kyoto.</p>
+      <p><em>Wind &amp; Water</em> is Sleem&rsquo;s first full-length book.</p>
+    </div>
+    <div class="divider"><span class="orn">☯</span></div>
+  </div>
+  <div class="folio"><span class="num">283</span></div>
+</div>
+
+<!-- ===================== COLOPHON (p. 284) ===================== -->
+<div class="page verso"><div class="page-num-screen">284 · colophon</div>
+  <svg class="pg-bg" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><use href="#bg-clouds"/></svg>
+  <div class="body-content">
+    <div class="colophon">
+      <div class="seal">水</div>
+      <div class="head">Colophon</div>
+      <p><em>Wind &amp; Water: The Complete Feng Shui Compendium</em> was designed and set by the Cinnabar Studio in the spring of 2026.</p>
+      <p>The text is set in <strong>Lora</strong>, a contemporary serif drawn by Cyreal in 2011 and revised in 2020. Display type is set in <strong>Cormorant Garamond</strong>, drawn by Christian Thalmann after a 1592 specimen by Claude Garamont. Chinese characters are set in <strong>Noto Serif SC</strong> by Google &amp; Adobe.</p>
+      <p>Printed on 60# acid-free natural cream paper, FSC®-certified, in compliance with <em>ANSI/NISO Z39.48-1992 (R2009)</em>.</p>
+      <div class="divider"><span class="orn">☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷</span></div>
+      <p style="font-family:var(--display);font-style:italic;color:var(--cinnabar-d);">Cinnabar Press · MMXXVI<br/>An imprint of the House of Wind &amp; Water</p>
+    </div>
+  </div>
+  <div class="folio"><span class="num">284</span></div>
+</div>
+
+</div>
+</body>
+</html>
