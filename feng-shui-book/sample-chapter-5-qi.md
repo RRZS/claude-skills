@@ -1,4 +1,4 @@
-*Sample chapter draft for* **Wind and Water: The Complete Spiritual Guide to Feng Shui***. This is Chapter 5 of the structure in* `OUTLINE.md`*, written to demonstrate the book's voice and chapter apparatus — an aphoristic epigraph, an atmospheric opening, precise instruction, a narrative vignette, and a closing Practice. Draft length ~2,500 words.*
+*Sample chapter draft for* **Wind & Water: The Complete Feng Shui Compendium***. This is Chapter 5 of the structure in* `OUTLINE.md`*, written to demonstrate the book's voice and chapter apparatus — an aphoristic epigraph, an atmospheric opening, precise instruction, a narrative vignette, and a closing Practice. Draft length ~2,500 words.*
 
 ---
 

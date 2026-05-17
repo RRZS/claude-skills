@@ -1,4 +1,4 @@
-*Sample chapter draft for* **Wind and Water: The Complete Spiritual Guide to Feng Shui***. This is Chapter 31, a Part VII room-by-room chapter, drafted to test the book's hands-on practical register against the more foundational Chapter 5. Same apparatus — epigraph, atmospheric opening, instruction, a narrative vignette, and a closing Practice. Draft length ~2,900 words.*
+*Sample chapter draft for* **Wind & Water: The Complete Feng Shui Compendium***. This is Chapter 31, a Part VII room-by-room chapter, drafted to test the book's hands-on practical register against the more foundational Chapter 5. Same apparatus — epigraph, atmospheric opening, instruction, a narrative vignette, and a closing Practice. Draft length ~2,900 words.*
 
 ---
 

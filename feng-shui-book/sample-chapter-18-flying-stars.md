@@ -1,4 +1,4 @@
-*Sample chapter draft for* **Wind and Water: The Complete Spiritual Guide to Feng Shui***. This is Chapter 18, a Part V advanced-systems chapter, drafted to test the book's technical register — teaching an intricate classical system without losing the voice or the reader. Same apparatus — epigraph, atmospheric opening, instruction, a narrative vignette, and a closing Practice. Draft length ~2,800 words.*
+*Sample chapter draft for* **Wind & Water: The Complete Feng Shui Compendium***. This is Chapter 18, a Part V advanced-systems chapter, drafted to test the book's technical register — teaching an intricate classical system without losing the voice or the reader. Same apparatus — epigraph, atmospheric opening, instruction, a narrative vignette, and a closing Practice. Draft length ~2,800 words.*
 
 ---
 

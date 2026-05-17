@@ -1,4 +1,4 @@
-# Wind and Water — The Complete Spiritual Guide to Feng Shui
+# Wind & Water — The Complete Feng Shui Compendium
 
 **A comprehensive book outline and development plan**
 
@@ -8,10 +8,12 @@
 
 | Field | Detail |
 |---|---|
-| **Working title** | *Wind and Water: The Complete Spiritual Guide to Feng Shui* |
-| **Subtitle options** | • *Harmonize Your Home, Align Your Destiny, and Awaken the Energy of Every Space* <br>• *The Living Art of Energy, Space, and Harmonious Living* <br>• *Classical Wisdom for Sacred, Abundant Homes* |
-| **Alternative titles** | *The Breath of the Dragon* · *The Living Home* · *Harmony by Design* · *The Sacred Home* |
-| **Genre** | Mind-body-spirit / Eastern philosophy / Home & lifestyle (reference) |
+| **Title** | *Wind & Water* |
+| **Subtitle** | *The Complete Feng Shui Compendium* |
+| **Strapline** | *Principles, Practice, and the Soulful Art of Living in Balance* |
+| **Author** | Mei Lin Tsao · foreword by Master Chen Yan-Hui |
+| **Publisher** | Cinnabar Press — an imprint of the House of Wind & Water |
+| **Genre** | Mind · Body · Spirit / Eastern philosophy / Home & lifestyle (reference) |
 | **Format** | Comprehensive guide — authoritative all-in-one reference |
 | **Length** | 300+ pages · ~95,000–110,000 words · 9 parts · 47 chapters + 6 appendices |
 | **Audience** | Spiritual seekers, energy-work practitioners, and committed students who want the classical tradition honored — from curious beginner to aspiring practitioner |
@@ -94,6 +96,7 @@ The prose should feel *enchanted but exact* — a worldview in which the unseen 
 - **Half-title and title pages**
 - **Epigraph** — a line from the *Tao Te Ching* or the *Zang Shu* (Book of Burial) on wind, water, and Qi
 - **Dedication**
+- **Foreword** — by Master Chen Yan-Hui; an elder practitioner's blessing, placing the book within the living lineage
 - **A Note on Language and Approach** — Romanization choices; the schools drawn upon; the spirit in which the book is offered
 - **Preface — An Invitation** — the author's path to the practice; why Feng Shui is a spiritual discipline, not interior decoration
 - **How to Use This Book** — the reader as practitioner; what tools they will need (compass, floor plan, journal); how to move through the book in order, then return to it as a lifelong reference
@@ -103,7 +106,7 @@ The prose should feel *enchanted but exact* — a worldview in which the unseen 
 *Purpose:* Establish what Feng Shui truly is before any technique is taught.
 
 - The meaning of the name: *Feng* (wind) — invisible, ever-moving; *Shui* (water) — flowing, nourishing
-- Over four thousand years of observation: a living science of the relationship between people and place
+- Over three thousand years of observation: a living science of the relationship between people and place
 - What Feng Shui is **not**: superstition, mere décor, a get-rich-quick formula
 - The home as microcosm — "as above, so below"
 - Common myths and misconceptions, named and set aside
@@ -590,7 +593,7 @@ How the uploaded research maps into the book, so nothing is lost:
 | **Feng Shui: Improve & Harmonize your Home or Business** (43-page e-book) | Five Elements and cycles (Ch 7–9), the deep color chapter (Ch 40), the happy-home and relationship material (Ch 29, 31), cul-de-sac and landscape issues (Ch 24–25), mirrors (Ch 36), and the whole of business Feng Shui (Ch 45) |
 | **Feng Shui Kua reference** | Chapter 14 — full Eight Mansions detail, the four auspicious and four inauspicious directions, and Appendix A tables |
 | **Sample BaZi chart** (Joey Yap's Ming Pan) | Chapter 16 — the worked, anonymized example for teaching the reading of a Four Pillars chart, including Luck Pillars and Noble People |
-| **The "Wind and Water" visual book (HTML)** | The designed/illustrated edition concept and the working title; informs the Illustration Plan above |
+| **The "Wind and Water" visual book (HTML)** | The designed/illustrated edition concept; informs the title and the Illustration Plan above |
 | **RPG "Magic" sourcebook chapter** (Water Margin-themed tabletop game) | **Voice and tone only** (see §4) — informs the book's evocative, story-rich register. No fictional, invented, or game-mechanical content is imported; it is not treated as a factual source. |
 
 The book also deliberately **adds** material the sources only touch lightly, to meet the "comprehensive, leaves nothing out" goal: the cosmology and history (Part I), the Luo Pan and the He Tu/Lo Shu (Ch 10–11), full Flying Star chart construction (Ch 20), Form School landscape reading (Part VI), date selection (Ch 44), and the practitioner's ethics (Ch 46).
@@ -605,6 +608,7 @@ The book also deliberately **adds** material the sources only touch lightly, to 
 - **Chapter length:** ~2,000–2,600 words average; room-by-room chapters (Part VII) run longer
 - **Apparatus:** running heads, part dividers, an aphoristic epigraph opening each chapter, a short illustrative vignette where a principle is best taught through a scene, and a "Practice" box closing each chapter with a concrete action
 - **Reader tools:** floor-plan templates, checklists, and reference tables gathered in the appendices for photocopy/printing
+- **First edition:** Cinnabar Press (an imprint of the House of Wind & Water), 2026 · ISBN 978-1-959402-08-7 · cover price US $24.95 / CAN $32.50
 
 ---
 
@@ -626,7 +630,7 @@ Drafting need not follow the reading order. A recommended sequence:
 
 A few choices to settle before or early in the drafting:
 
-1. **Final title** — confirm *Wind and Water* or choose an alternative; decide the subtitle.
+1. **Title and edition — resolved.** The cover edition confirms the title *Wind & Water*, the subtitle *The Complete Feng Shui Compendium*, the strapline *Principles, Practice, and the Soulful Art of Living in Balance*, the author (Mei Lin Tsao), the foreword (Master Chen Yan-Hui), and the publisher (Cinnabar Press).
 2. **Depth of Flying Stars** — how far to take chart *construction* (Ch 20) versus chart *interpretation*. Recommendation: teach construction fully but keep worked examples generous, since this is the steepest chapter for readers.
 3. **The author's presence** — first-person teaching voice throughout, or a more impersonal classical register. Recommendation: a warm first-person in prefaces, chapter openings, and "Practice" boxes; an authoritative instructional voice in the body.
 4. **Narrative vignettes and case studies** — the storytelling-as-instruction principle (see §4) calls for short illustrative scenes throughout. Confirm scope: a brief anonymized vignette to open or illustrate each chapter, plus one fuller case study per room chapter in Part VII. Recommendation: yes to both.
@@ -635,4 +639,4 @@ A few choices to settle before or early in the drafting:
 
 ---
 
-*This outline is the development plan for* Wind and Water: The Complete Spiritual Guide to Feng Shui. *It is intended as a living document — to be revised as drafting reveals what each chapter wants to become.*
+*This outline is the development plan for* Wind & Water: The Complete Feng Shui Compendium (Cinnabar Press, 2026). *It is intended as a living document — to be revised as drafting reveals what each chapter wants to become.*
