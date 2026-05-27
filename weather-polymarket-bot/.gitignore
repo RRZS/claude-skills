@@ -1,0 +1,22 @@
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+.env
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+dist/
+build/
+
+# Paper trading output — keep the directory, not the data
+logs/*.csv
+logs/*.log
+
+.DS_Store
+.idea/
+.vscode/
