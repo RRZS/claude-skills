@@ -142,6 +142,25 @@ Tests cover market parsing (titles → structured brackets) and signal logic
 
 ---
 
+## Parser-coverage diagnostic
+
+Before relying on the parser, verify it actually matches today's
+Polymarket weather markets. The bundled diagnostic hits ONLY the public
+Gamma endpoint and reports how many active markets survive each filter:
+
+```bash
+PYTHONPATH=src python scripts/parser_coverage.py
+PYTHONPATH=src python scripts/parser_coverage.py --json drops.json   # full dump
+```
+
+It prints per-stage counts, examples of markets the parser handled, and
+examples of markets that mention a supported city + temperature but
+didn't fully parse (with a list of reasons). If you see a dominant
+failure pattern, extend the regexes in `parsing/market_parser.py` and
+re-run.
+
+---
+
 ## Safety guarantees in v1
 
 - No private key is ever read.
