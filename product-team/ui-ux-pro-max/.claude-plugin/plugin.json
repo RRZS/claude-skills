@@ -1,0 +1,13 @@
+{
+  "name": "ui-ux-pro-max",
+  "description": "UI/UX design intelligence with 67 styles, 161 color palettes, 57 font pairings, 25 chart types, 99 UX guidelines, and stack-specific guidance across 16 frameworks (React, Next.js, Vue, Svelte, Astro, Nuxt, SwiftUI, React Native, Flutter, Tailwind, shadcn/ui, Jetpack Compose, Three.js, Angular, Laravel, HTML). Searchable BM25+regex hybrid engine over CSV databases. Use when designing pages, refactoring components, choosing color/typography systems, reviewing UI for accessibility, or generating a tailored design system. Includes search.py CLI and design_system.py generator. Imported from nextlevelbuilder/ui-ux-pro-max-skill (MIT).",
+  "version": "2.5.0",
+  "author": {
+    "name": "NextLevelBuilder",
+    "url": "https://uupm.cc"
+  },
+  "homepage": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+  "repository": "https://github.com/alirezarezvani/claude-skills",
+  "license": "MIT",
+  "skills": "./skills"
+}
